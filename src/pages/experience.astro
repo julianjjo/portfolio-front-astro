@@ -1,0 +1,27 @@
+---
+import Canvas from "@components/Canvas.astro";
+import Navbar from "@components/Navbar.astro";
+import Layout from "@layouts/Layout.astro";
+import ExperienceCards from "@components/ExperienceCards.astro";
+import FontsLinks from "@components/FontsLinks.astro";
+---
+
+<Layout title="Experience">
+  <FontsLinks />
+  <Canvas />
+  <main class="flex flex-col bg-gray-800 bg-opacity-50 playfair-display" role="main">
+    <Navbar />
+    <div class="container mx-auto">
+      <ExperienceCards />
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .playfair-display {
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+	}
+</style>

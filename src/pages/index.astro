@@ -1,0 +1,102 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Canvas from "@components/Canvas.astro";
+import Navbar from "@components/Navbar.astro";
+import GithubIcon from "@icons/GithubIcon.astro";
+import LinkedinIcon from "@icons/LinkedinIcon.astro";
+import PhoneIcon from "@icons/PhoneIcon.astro";
+import FontsLinks from "@components/FontsLinks.astro";
+---
+
+<Layout title="About Me">
+	<FontsLinks />
+  <Canvas />
+  <main
+    class="flex min flex-col h-full md:h-screen bg-gray-800 bg-opacity-50 playfair-display"
+  >
+    <Navbar />
+
+    <div class="flex flex-col items-center justify-center md:h-full">
+      <div class="container mx-auto px-40">
+        <div class="text-center py-20">
+          <h1
+            class="text-7xl font-bold items-center text-gray-100"
+            role="heading"
+            id="animatedTitle"
+          >
+          </h1>
+        </div>
+        <div class="text-center py-8 text-xl text-gray-200">
+          <p>
+            I am a seasoned Backend Developer with 8 years of experience
+            specializing in creating robust, scalable solutions using <span
+              class="font-bold">Java</span
+            >, <span class="font-bold">JavaScript</span>, <span
+              class="font-bold">Python</span
+            >, and <span class="font-bold">PHP</span>. My expertise extends to
+            Full Stack development, proficiently using <span class="font-bold"
+              >JavaScript</span
+            >, <span class="font-bold">TypeScript</span>, <span
+              class="font-bold">CSS</span
+            >, and <span class="font-bold">HTML</span> to deliver dynamic and responsive
+            user interfaces.
+          </p>
+        </div>
+        <div class="text-center pb-20 italic text-gray-200">
+          <p>
+            My journey in tech has also embraced cloud technologies, managing
+            high-quality technical implementations on AWS and Google Cloud.
+            Whether working on microservices or monolithic architectures, I
+            prioritize clean code, technical excellence, and clean architecture
+            principles to drive efficient and effective solutions.
+          </p>
+        </div>
+        <div class="flex justify-center pb-20">
+          <a
+            href="https://www.linkedin.com/in/julian-ariel-mican-franco-87a08574/?locale=en_US"
+            target="_blank"
+            class="p-6 hover:animate-bounce"
+            ><LinkedinIcon width="40" height="40" /></a
+          >
+          <a
+            href="https://github.com/julianjjo"
+            target="_blank"
+            class="p-6 hover:animate-bounce"
+            ><GithubIcon width="40" height="40" /></a
+          >
+          <a href="tel:+573225107534" class="p-6 hover:animate-bounce"
+            ><PhoneIcon width="40" height="40" /></a
+          >
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .playfair-display {
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+	}
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  var titleElement = document.getElementById('animatedTitle');
+  var titleText = 'About Me'; // Aquí escribes tu título
+  var currentIndex = 0;
+
+  var interval = setInterval(function() {
+    if (currentIndex < titleText.length) {
+      if (titleElement) {
+        titleElement.textContent += titleText[currentIndex++];
+      }
+    } else {
+      clearInterval(interval);
+    }
+  }, 100); // Puedes ajustar la velocidad de la animación cambiando 100 milisegundos
+});
+
+</script>

@@ -1,0 +1,96 @@
+---
+import XMarkIcon from 'astro-heroicons/solid/XMark.astro';
+import Bars3Icon from 'astro-heroicons/solid/Bars3.astro';
+import { Image } from 'astro:assets';
+import ProfileImage from '../assets/profile_image.jpeg';
+const navigation = [
+    { name: 'About Me', href: '/', current: true },
+    { name: 'Experience', href: '/experience', current: false },
+    { name: 'Skills', href: '#', current: false },
+    { name: 'Contact', href: '/contact', current: false },
+]
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="bg-gray-800">
+	<div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+	  <div class="relative flex h-16 items-center justify-between">
+		<div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+		  <!-- Mobile menu button-->
+		  <button type="button" id="button-mobile-bar" class="hidden relative items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+			<span class="absolute -inset-0.5"></span>
+			<span class="sr-only">Open main menu</span>
+			<Bars3Icon id="bars3-icon" class="block h-6 w-6">
+		  </button>
+		  <button type="button" id="button-mobile-x" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+			<span class="absolute -inset-0.5"></span>
+			<span class="sr-only">Open main menu</span>
+			<XMarkIcon id="xmark-icon" class="block h-6 w-6">
+		  </button>
+		</div>
+		<div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+		  <div class="flex flex-shrink-0 items-center">
+			<Image src={ProfileImage} alt="self portrait" class="h-8 w-8 rounded-full"/>
+		  </div>
+		  <div class="hidden sm:ml-6 sm:block">
+			<div class="flex space-x-4">
+				{navigation.map((item) => <a href={item.href} class={currentPath === item.href ? 'bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium': 'text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'}>{item.name}</a>)}
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  
+	<!-- Mobile menu, show/hide based on menu state. -->
+	<div class="sm:hidden" id="mobile-menu">
+	  <div class="space-y-1 px-2 pb-3 pt-2">
+		{navigation.map((item) => <a href={item.href} class={currentPath === item.href ? 'bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium': 'text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium'}>{item.name}</a>)}
+	  </div>
+	</div>
+</nav>
+<style>
+	.fade-out {
+  		animation: fadeOut 0.5s forwards; /* La animación se llama 'fadeOut', durará 1 segundo y 'forwards' mantiene el estado final de la animación. */
+	}
+
+	@keyframes fadeOut {
+	to {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+</style>
+
+<script>
+	const button_bar = document.getElementById('button-mobile-bar');
+	const button_x = document.getElementById('button-mobile-x');
+	const mark_icon = document.getElementById('xmark-icon');
+	const bars3_icon = document.getElementById('bars3-icon');
+	const menu = document.getElementById('mobile-menu');
+	console.log(button_bar, button_x, mark_icon, bars3_icon, menu);
+	if (button_bar === null || button_x === null || mark_icon === null || bars3_icon === null || menu === null) {
+		throw new Error('Could not find elements');
+	}
+
+	button_bar.addEventListener('click', () => {
+		const expanded = button_bar.getAttribute('aria-expanded') === 'true' || false;
+		button_bar.setAttribute('aria-expanded', String(!expanded));
+		menu.classList.remove('hidden');
+		button_bar.classList.toggle('hidden');
+		button_x.classList.toggle('hidden');
+	});
+
+	button_x.addEventListener('click', () => {
+		const expanded = button_bar.getAttribute('aria-expanded') === 'true' || false;
+		button_bar.setAttribute('aria-expanded', String(!expanded));
+		menu.classList.add('fade-out');
+		button_bar.classList.toggle('hidden');
+		button_x.classList.toggle('hidden');
+	});
+
+	menu.addEventListener('animationend', () => {
+		menu.classList.toggle('hidden');
+		menu.classList.remove('fade-out');
+	});
+</script>

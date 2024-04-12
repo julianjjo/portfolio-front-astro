@@ -1,0 +1,40 @@
+---
+import Icons from "@icons/Icons.astro";
+
+
+const experiences = [
+        { title: 'Farmatodo', time: 'Currently, 2 years', description: 'Backend developer in <span class="font-bold">Spring Boot</span> and <span class="font-bold">NestJS</span>, developing new functionalities for microservices, working with <span class="font-bold">OracleDB</span> and <span class="font-bold">PostgreSQL</span>. Additionally, I excel in crafting <span class="font-bold">Python</span> scripts for automation and data manipulation, further enhancing operational efficiency and system integration.', logos: [{key: 0, svg: "JavaIcon"}, {key: 1, svg: "NodeJsIcon"}, {key: 2, svg: "PythonIcon"}, {key: 3, svg: "SpringBootIcon"}, {key: 4, svg: "NestJsIcon"}, {key: 5, svg: "OracleDbIcon"}, {key: 6, svg: "PostgreSqlIcon"}, {key: 7, svg: "GoogleCloudIcon"}]},
+        { title: 'Sophos Solutions', time: '2 years', description: 'Developed a platform for creating automated tests using <span class="font-bold">Java</span> with <span class="font-bold">Spring Boot</span> and <span class="font-bold">Angular</span>, targeting testers without Automation experience.', logos: [{key: 0, svg: "JavaIcon"}, {key: 1, svg: "PostgreSqlIcon"}, {key: 2, svg: "AngularIcon"}, {key: 3, svg: "HtmlIcon"}, {key: 4, svg: "CssIcon"}, {key: 5, svg: "TsIcon"}, {key: 6, svg: "AwsIcon"}]},
+        { title: 'ElTiempo', time: '3 years', description: 'Full stack developer using <span class="font-bold">Angular</span> and <span class="font-bold">Symfony</span>. Improved and added new functionalities to their news website.', logos: [{key: 0, svg: "SymfonyIcon"}, {key: 1, svg: "PhpIcon"}, {key: 2, svg: "MySqlIcon"}, {key: 3, svg: "HtmlIcon"}, {key: 4, svg: "CssIcon"}, {key: 5, svg: "JsIcon"}]},
+        { title: 'Ministry of Environment and Sustainable Development of Colombia', time: '1 year', description: 'Developed new functionalities for an LMS platform using <span class="font-bold">PHP</span> and <span class="font-bold">MySQL</span>.', logos: [{key: 0, svg: "PhpIcon"}, {key: 1, svg: "MySqlIcon"}, {key: 2, svg: "HtmlIcon"}, {key: 3, svg: "CssIcon"}, {key: 4, svg: "JsIcon"}]},
+        { title: 'Fusagasuga City Hall', time: '9 months', description: 'Full stack developer with <span class="font-bold">Symfony</span>, <span class="font-bold">CSS</span>, <span class="font-bold">HTML</span>. Developed an open data platform.', logos: [{key: 0, svg: "SymfonyIcon"}, {key: 1, svg: "PhpIcon"},{key: 2, svg: "PostgreSqlIcon"}, {key: 3, svg: "HtmlIcon"}, {key: 4, svg: "CssIcon"}, {key: 5, svg: "JsIcon"}] },
+    ];
+---
+
+<div class="grid sm:grid-cols-2 md:grid-cols-2 grid-rows-2 md:mx-32 md:mt-4">
+    {experiences.map((experience, index) => (
+        <div class="bg-white bg-opacity-80 shadow-md shadow-gray-800 rounded-3xl scale-90 md:hover:scale-100 md:transition md:duration-300 md:ease-in-out">
+            <div class='bg-gray-800 rounded-t-3xl md:h-60'>
+                <div class='pt-8 text-left text-sm'>
+                    <span class="rounded-full shadow-sm bg-gray-300 ml-8 p-2 text-gray-900 shadow-gray-500">{experience.time}</span>
+                </div>
+                <div><h3 class="text-4xl font-semibold text-white p-8">{experience.title}</h3></div>
+            </div>
+            <div class='flex items-center pt-8 pb-8 h-64'>
+                <p class="text-lg text-justify text-zinc-700 px-8 pt-8" set:html={experience.description}></p>
+            </div>
+            <div class='grid grid-rows-2 grid-cols-4 md:grid-rows-2 md:grid-cols-5'>
+                {experience.logos.map((logo) => (
+                    <div class='flex items-center justify-center md:mx-4 mb-8'><Icons width="50" height="50" name={logo.svg}/></div>
+                ))}
+            </div>
+        </div>
+    ))}
+</div>
+
+<style>
+    .my-3percent{
+        padding-top: 10%;
+        padding-bottom: 10%;
+    }
+</style>
