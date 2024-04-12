@@ -1,23 +1,12 @@
 ---
-import Canvas from "@components/Canvas.astro";
-import Navbar from "@components/Navbar.astro";
 import Layout from "@layouts/Layout.astro";
-import FontsLinks from "@components/FontsLinks.astro";
 import FormContact from "@components/FormContact.astro";
 ---
 
 <Layout title="Contact">
-  <FontsLinks />
-  <Canvas />
-  <main
-    class="flex flex-col bg-gray-800 bg-opacity-50 playfair-display h-screen"
-    role="main"
-  >
-    <Navbar />
     <div class="container mx-auto px-24 relative">
       <FormContact />
     </div>
-  </main>
 </Layout>
 
 <style>
