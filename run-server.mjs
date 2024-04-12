@@ -3,6 +3,7 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 import { handler as ssrHandler } from './dist/server/entry.mjs';
 
 const app = express();
+const port = process.env.PORT || 4000;
 // Modifica esto en función de la opción `base` de tu archivo astro.config.mjs.
 // Deben coincidir. El valor predeterminado es "/".
 const base = '/'
@@ -17,4 +18,4 @@ app.use(
     }),
   );
 
-app.listen(8080);
+app.listen(port);

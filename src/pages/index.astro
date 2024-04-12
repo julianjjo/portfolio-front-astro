@@ -9,7 +9,7 @@ import FontsLinks from "@components/FontsLinks.astro";
 ---
 
 <Layout title="About Me">
-	<FontsLinks />
+  <FontsLinks />
   <Canvas />
   <main
     class="flex min flex-col h-full md:h-screen bg-gray-800 bg-opacity-50 playfair-display"
@@ -79,24 +79,23 @@ import FontsLinks from "@components/FontsLinks.astro";
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-	}
+  }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-  var titleElement = document.getElementById('animatedTitle');
-  var titleText = 'About Me'; // Aquí escribes tu título
-  var currentIndex = 0;
+  document.addEventListener("DOMContentLoaded", function () {
+    var titleElement = document.getElementById("animatedTitle");
+    var titleText = "About Me"; // Aquí escribes tu título
+    var currentIndex = 0;
 
-  var interval = setInterval(function() {
-    if (currentIndex < titleText.length) {
-      if (titleElement) {
-        titleElement.textContent += titleText[currentIndex++];
+    var interval = setInterval(function () {
+      if (currentIndex < titleText.length) {
+        if (titleElement) {
+          titleElement.textContent += titleText[currentIndex++];
+        }
+      } else {
+        clearInterval(interval);
       }
-    } else {
-      clearInterval(interval);
-    }
-  }, 100); // Puedes ajustar la velocidad de la animación cambiando 100 milisegundos
-});
-
+    }, 100); // Puedes ajustar la velocidad de la animación cambiando 100 milisegundos
+  });
 </script>
