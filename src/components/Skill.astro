@@ -1,0 +1,25 @@
+---
+import Icons from "@icons/Icons.astro";
+
+interface Props {
+    widthIcon: string,
+    heightIcon: string
+    nameIcon: String
+    percentage: String
+}
+
+const { nameIcon, widthIcon, heightIcon, percentage } = Astro.props;
+
+---
+
+
+<div class="container mx-auto md:pt-18">
+    <div class="flex justify-center items-center my-5">
+        <div class="rounded-lg bg-white p-2">
+            <Icons width={widthIcon} height={heightIcon} name={nameIcon} />
+        </div>
+    </div>
+    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-slate-800">
+        <div class="bg-blue-600 h-2.5 rounded-full" style={"width: "+percentage+"%"}></div>
+    </div>
+</div>

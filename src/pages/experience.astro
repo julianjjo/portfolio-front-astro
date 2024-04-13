@@ -1,16 +1,9 @@
 ---
-import Canvas from "@components/Canvas.astro";
-import Navbar from "@components/Navbar.astro";
-import Layout from "@layouts/Layout.astro";
 import ExperienceCards from "@components/ExperienceCards.astro";
-import FontsLinks from "@components/FontsLinks.astro";
+import LayoutTwo from "@layouts/LayoutTwo.astro";
 ---
 
-<Layout title="Experience">
-  <FontsLinks />
-  <Canvas />
-  <main class="flex flex-col bg-gray-800 bg-opacity-50 playfair-display" role="main">
-    <Navbar />
+<LayoutTwo title="Experience">
     <div class="container mx-auto">
       <ExperienceCards />
     </div>

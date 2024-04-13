@@ -1,115 +1,177 @@
 ---
-
+import Toast from "./Toast.astro";
 ---
 
+<form action="" id="loginForm">
+  <div class="space-y-12">
+    <div class="flex flex-col m-16">
+      <h2 class="text-3xl font-semibold leading-7 text-slate-300" id="animated-text"></h2>
 
-<form action="" onsubmit="submit_form(Event)" id="loginForm">
-    <div class="space-y-12">
-      <div class="flex flex-col m-16">
-        <h2 class="text-3xl font-semibold leading-7 text-slate-300 animate-pulse">
-          Contact Me
-        </h2>
-
-        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-          {/* Campos del formulario actualizados para manejar estado */}
-          <div class="sm:col-span-3">
-            <label
-              for="email"
-              class="block text-sm font-medium leading-6 text-slate-100"
-              >Email</label
-            >
-            <div class="mt-2">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-400 sm:text-sm sm:leading-6"
-                value=""
-              />
-            </div>
+      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        {/* Campos del formulario actualizados para manejar estado */}
+        <div class="sm:col-span-3">
+          <label
+            for="email"
+            class="block text-sm font-medium leading-6 text-slate-100"
+            >Email</label
+          >
+          <div class="mt-2">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-400 sm:text-sm sm:leading-6"
+              value=""
+            />
           </div>
+        </div>
 
-          <div class="sm:col-span-3">
-            <label
-              for="subject"
-              class="block text-sm font-medium leading-6 text-slate-100"
-              >Subject</label
-            >
-            <div class="mt-2">
-              <input
-                type="text"
-                name="subject"
-                id="subject"
-                autocomplete="subject"
-                class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-400 sm:text-sm sm:leading-6"
-                value=""
-              />
-            </div>
+        <div class="sm:col-span-3">
+          <label
+            for="subject"
+            class="block text-sm font-medium leading-6 text-slate-100"
+            >Subject</label
+          >
+          <div class="mt-2">
+            <input
+              type="text"
+              name="subject"
+              id="subject"
+              autocomplete="subject"
+              class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-400 sm:text-sm sm:leading-6"
+              value=""
+            />
           </div>
+        </div>
 
-          <div class="col-span-full">
-            <label
-              for="about"
-              class="block text-sm font-medium leading-6 text-slate-100"
-              >Message</label
-            >
-            <div class="mt-2">
-              <textarea
-                id="message"
-                name="message"
-                rows={6}
-                class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                value=""></textarea>
-            </div>
+        <div class="col-span-full">
+          <label
+            for="about"
+            class="block text-sm font-medium leading-6 text-slate-100"
+            >Message</label
+          >
+          <div class="mt-2">
+            <textarea
+              id="message"
+              name="message"
+              rows={6}
+              class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              value=""></textarea>
           </div>
         </div>
       </div>
-
-      <div class="mt-6 pr-14 pb-10 flex items-center justify-end gap-x-6">
-        <button
-          type="button"
-          class="text-sm font-semibold leading-6 text-gray-900"
-          >Cancel</button
-        >
-        <button
-          type="submit"
-          class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >Save</button
-        >
-      </div>
     </div>
-  </form>
+
+    <div class="mt-6 pr-14 pb-10 flex items-center justify-end gap-x-6">
+      <button
+        type="button"
+        class="text-sm font-semibold leading-6 text-gray-900">Cancel</button
+      >
+      <button
+        type="submit"
+        class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >Save</button
+      >
+    </div>
+  </div>
+</form>
+
+<div class="flex flex-col absolute top-toast left-mid">
+  <Toast type="Success" className=" hidden" />
+  <Toast type="Danger" className=" hidden" />
+</div>
+
+<style>
+  .left-mid {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .top-toast {
+    top: 29rem;
+  }
+</style>
 
 <script>
+  let responseMessage: string;
 
-    let responseMessage: string;
+  async function submit_form(e: SubmitEvent) {
+    e.preventDefault();
 
-    async function submit_form(e: SubmitEvent) {
-      e.preventDefault();
-
-      const formData = {
-          email: (document.getElementById("email") as HTMLInputElement).value,
-          subject: (document.getElementById("subject") as HTMLInputElement).value,
-          message: (document.getElementById("message") as HTMLInputElement).value,
-      };
-      const response = await fetch("/api/contact_me", {
-          method: "POST",
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData),
-      });
-      const data = await response.json();
+    const formData = {
+      email: (document.getElementById("email") as HTMLInputElement).value,
+      subject: (document.getElementById("subject") as HTMLInputElement).value,
+      message: (document.getElementById("message") as HTMLInputElement).value,
+    };
+    const response = await fetch("/api/contact_me", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    const data = await response.json();
+    if (response.ok) {
       responseMessage = data.message;
+      const toastSuccess = document.getElementById("toast-success");
+      if (toastSuccess) {
+        toastSuccess.classList.remove("disappear");
+        toastSuccess.classList.remove("hidden");
+        setTimeout(() => {
+          closeToast(toastSuccess);
+        }, 5000);
+      }
+    } else {
+      const toastDanger = document.getElementById("toast-danger");
+      if (toastDanger) {
+        toastDanger.classList.remove("disappear");
+        toastDanger.classList.remove("hidden");
+        setTimeout(() => {
+          closeToast(toastDanger);
+        }, 5000);
+      }
     }
+  }
 
-    let loginForm = document.getElementById("loginForm");
+  let loginForm = document.getElementById("loginForm");
 
-    if (loginForm) {
-      loginForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        submit_form(e);
+  if (loginForm) {
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      submit_form(e).catch((error) => {
+        const toastDanger = document.getElementById("toast-danger");
+        if (toastDanger) {
+          toastDanger.classList.remove("disappear");
+          toastDanger.classList.remove("hidden");
+          setTimeout(() => {
+            closeToast(toastDanger);
+          }, 5000);
+        }
       });
+    });
+  }
+
+  function closeToast(e: HTMLElement) {
+    const toast = e;
+    if (toast) {
+      toast.classList.add("disappear");
     }
+  }
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var titleElement = document.getElementById("animated-text");
+    var titleText = "Contact Me"; // Aquí escribes tu título
+    var currentIndex = 0;
+
+    var interval = setInterval(function () {
+      if (currentIndex < titleText.length) {
+        if (titleElement) {
+          titleElement.textContent += titleText[currentIndex++];
+        }
+      } else {
+        clearInterval(interval);
+      }
+    }, 100); // Puedes ajustar la velocidad de la animación cambiando 100 milisegundos
+  });
 </script>

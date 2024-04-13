@@ -1,0 +1,31 @@
+---
+import Skill from "@components/Skill.astro";
+import LayoutTwo from "@layouts/LayoutTwo.astro";
+
+
+---
+<LayoutTwo title="Skills">
+    <div class="container mx-auto md:px-40 px-4 mb-10">
+        <h1 class="text-3xl font-bold items-center mt-14 text-slate-100">Skills</hl>
+    </div>
+    <div class="grid grid-rows-flow grid-cols-2 gap-20 md:px-40 px-4 pb-20">
+        <div class="rounded-md bg-slate-700 opacity-85 p-10 ">
+            <Skill widthIcon="70" heightIcon="70" nameIcon="JavaIcon" percentage="98" />
+            <Skill widthIcon="70" heightIcon="70" nameIcon="PhpIcon" percentage="99" />
+            <Skill widthIcon="70" heightIcon="70" nameIcon="PythonIcon" percentage="98" />
+            <Skill widthIcon="70" heightIcon="70" nameIcon="TsIcon" percentage="90" />
+            <Skill widthIcon="70" heightIcon="70" nameIcon="NodeJsIcon" percentage="90" />
+            <Skill widthIcon="70" heightIcon="70" nameIcon="SpringBootIcon" percentage="95" />
+            <Skill widthIcon="70" heightIcon="70" nameIcon="SymfonyIcon" percentage="90" />
+        </div>
+        <div class="rounded-md bg-slate-700 opacity-85 p-10">
+            <Skill widthIcon="70" heightIcon="70" nameIcon="NestJsIcon" percentage="95" />
+            <Skill widthIcon="70" heightIcon="70" nameIcon="CssIcon" percentage="95" />
+            <Skill widthIcon="70" heightIcon="70" nameIcon="HtmlIcon" percentage="95" />
+            <Skill widthIcon="70" heightIcon="70" nameIcon="MySqlIcon" percentage="98" />
+            <Skill widthIcon="70" heightIcon="70" nameIcon="PostgreSqlIcon" percentage="98" />
+            <Skill widthIcon="70" heightIcon="70" nameIcon="AwsIcon" percentage="90" />
+            <Skill widthIcon="70" heightIcon="70" nameIcon="GoogleCloudIcon" percentage="90" />
+        </div>
+    </div>
+</Layout>
