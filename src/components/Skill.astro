@@ -2,24 +2,91 @@
 import Icons from "@icons/Icons.astro";
 
 interface Props {
-    widthIcon: string,
-    heightIcon: string
-    nameIcon: String
-    percentage: String
+  widthIcon: string;
+  heightIcon: string;
+  nameIcon: String;
+  percentage: String;
 }
 
 const { nameIcon, widthIcon, heightIcon, percentage } = Astro.props;
-
 ---
 
-
 <div class="container mx-auto md:pt-18">
-    <div class="flex justify-center items-center my-5">
-        <div class="rounded-lg bg-white p-2">
-            <Icons width={widthIcon} height={heightIcon} name={nameIcon} />
-        </div>
+  <div class="flex justify-center items-center my-5">
+    <div class="rounded-lg bg-white p-2">
+      <Icons width={widthIcon} height={heightIcon} name={nameIcon} />
     </div>
-    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-slate-800">
-        <div class="bg-blue-600 h-2.5 rounded-full" style={"width: "+percentage+"%"}></div>
+  </div>
+  <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-slate-800">
+    <div
+      class={"bg-blue-600 h-2.5 rounded-full animate-percent-"+percentage}
+      style={"width: " + percentage + "%"}
+      id={nameIcon + "Id"}
+    >
     </div>
+  </div>
 </div>
+
+
+<style>
+  .animate-percent-90 {
+    animation: percent-90 2s linear;
+  }
+  .animate-percent-95 {
+    animation: percent-95 2s linear;
+  }
+  .animate-percent-98 {
+    animation: percent-98 2s linear;
+  }
+  .animate-percent-99 {
+    animation: percent-99 2s linear;
+  }
+
+  @keyframes percent-90 {
+    0% {
+      width: 0%;
+    }
+    50% {
+      width: 40%;
+    }
+    100% {
+      width: 95%;
+    }
+  }
+
+  @keyframes percent-95 {
+    0% {
+      width: 0%;
+    }
+    50% {
+      width: 40%;
+    }
+    100% {
+      width: 95%;
+    }
+  }
+
+  @keyframes percent-98 {
+    0% {
+      width: 0%;
+    }
+    50% {
+      width: 45%;
+    }
+    100% {
+      width: 98%;
+    }
+  }
+
+  @keyframes percent-99 {
+    0% {
+      width: 0%;
+    }
+    50% {
+      width: 45%;
+    }
+    100% {
+      width: 98%;
+    }
+  }
+</style>
