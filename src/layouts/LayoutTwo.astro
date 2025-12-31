@@ -23,40 +23,48 @@ const { title, description } = Astro.props;
     <FontsLinks />
     <Canvas />
     <main
-      class="flex flex-col bg-slate-800 bg-opacity-50 playfair-display"
+      class="relative flex flex-col min-h-screen transition-all duration-500 overflow-x-hidden"
       role="main"
     >
       <Navbar />
-      <slot />
+      <div class="flex-grow flex flex-col pt-24">
+        <slot />
+      </div>
     </main>
   </body>
 </html>
 <style is:global>
+  /* Already defined in Layout.astro, but including here for consistency if needed */
   :root {
     --accent: 136, 58, 234;
     --accent-light: 224, 204, 250;
     --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
-    );
+    --glass-bg: rgba(15, 23, 42, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
   }
+
   html {
-    font-family: system-ui, sans-serif;
-    background: #13151a;
-    background-size: 224px;
+    font-family: "Outfit", system-ui, sans-serif;
+    background: #020617;
+    color: #f1f5f9;
+    scroll-behavior: smooth;
   }
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
+
+  .playfair-display {
+    font-family: "Playfair Display", serif;
+  }
+
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+
+  .glass-nav {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
 </style>
