@@ -16,12 +16,10 @@
 </style>
 
 <script>
-  declare function useRef<T>(initialValue: T): { current: T };
-
   window.addEventListener("load", () => {
     "use strict";
     const canvas = document.getElementById(
-      "canvas"
+      "canvas",
     ) as HTMLCanvasElement | null;
     if (!canvas) return; // Ensure canvas is not null
     const ctx = canvas.getContext("2d");
@@ -99,7 +97,7 @@
           this.color ||
           opts.color.replace(
             "hue",
-            (tick * opts.hueChange).toString() as string
+            (tick * opts.hueChange).toString() as string,
           );
         this.cumulativeTime = this.cumulativeTime || 0;
 
@@ -162,15 +160,15 @@
                 (opts.addedLight ?? 0) *
                   Math.sin(
                     (this.cumulativeTime ?? 0) *
-                      (this.lightInputMultiplier ?? 0)
+                      (this.lightInputMultiplier ?? 0),
                   )
-              ).toString()
+              ).toString(),
             ) ?? "";
           ctx.fillRect(
             opts.cx + (this.x ?? 0 + x) * (opts.len ?? 0),
             opts.cy + (this.y ?? 0 + y) * (opts.len ?? 0),
             2,
-            2
+            2,
           );
 
           if (Math.random() < (opts.sparkChance ?? 0)) {
@@ -188,7 +186,7 @@
                   (Math.random() < 0.5 ? 1 : -1) -
                 (opts.sparkSize ?? 0) / 2,
               opts.sparkSize ?? 0,
-              opts.sparkSize ?? 0
+              opts.sparkSize ?? 0,
             );
           }
         }

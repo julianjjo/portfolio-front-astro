@@ -20,18 +20,3 @@ import FormContact from "@components/FormContact.astro";
     font-style: normal;
   }
 </style>
-
-<script>
-  let responseMessage: string;
-
-  async function submit(e: SubmitEvent) {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget as HTMLFormElement);
-    const response = await fetch("/api/feedback", {
-      method: "POST",
-      body: formData,
-    });
-    const data = await response.json();
-    responseMessage = data.message;
-  }
-</script>
