@@ -1,0 +1,68 @@
+---
+import { SEO as AstroSEO } from "astro-seo";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalURL?: string;
+}
+
+const {
+  title = "Julian Mican | Backend & Full Stack Developer",
+  description = "Backend Developer with 8 years of experience in Java, JavaScript, Python, and PHP. Expert in cloud technologies and clean architecture.",
+  ogImage = "/og-image.png", // Make sure to provide this or use a default
+  canonicalURL = Astro.url.href,
+} = Astro.props;
+
+const siteName = "Julian Mican Portfolio";
+const twitterHandle = "@julianjjo"; // Replace if you have one
+---
+
+<AstroSEO
+  title={title}
+  description={description}
+  canonical={canonicalURL}
+  openGraph={{
+    basic: {
+      title: title,
+      type: "website",
+      image: ogImage,
+      url: canonicalURL,
+    },
+    optional: {
+      siteName: siteName,
+      description: description,
+    },
+  }}
+  twitter={{
+    creator: twitterHandle,
+    card: "summary_large_image",
+    site: twitterHandle,
+    title: title,
+    description: description,
+    image: ogImage,
+  }}
+  extend={{
+    meta: [
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "generator", content: Astro.generator },
+    ],
+  }}
+/>
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Julian Ariel Mican Franco",
+    "url": "https://julianjjo.github.io",
+    "jobTitle": "Backend Developer",
+    "sameAs": [
+      "https://www.linkedin.com/in/julian-ariel-mican-franco-87a08574/",
+      "https://github.com/julianjjo"
+    ],
+    "description": "Seasoned Backend Developer with 8 years of experience specializing in Java, JavaScript, Python, and PHP."
+  }
+</script>

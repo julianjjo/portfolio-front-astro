@@ -2,23 +2,22 @@
 import Canvas from "@components/Canvas.astro";
 import Navbar from "@components/Navbar.astro";
 import FontsLinks from "@components/FontsLinks.astro";
+import SEO from "@components/SEO.astro";
 
 interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
+    <SEO title={title} description={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
   </head>
   <body>
     <FontsLinks />

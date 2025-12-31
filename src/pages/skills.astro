@@ -4,9 +4,12 @@ import LayoutTwo from "@layouts/LayoutTwo.astro";
 
 
 ---
-<LayoutTwo title="Skills">
+<LayoutTwo 
+  title="Skills" 
+  description="Technical skills and expertise in Java, PHP, Python, JavaScript, TypeScript, Node.js, Spring Boot, AWS, and more."
+>
     <div class="container mx-auto md:px-40 px-4 mb-10">
-        <h1 class="text-3xl font-bold items-center mt-14 text-slate-100">Skills</hl>
+        <h1 class="text-3xl font-bold items-center mt-14 text-slate-100">Skills</h1>
     </div>
     <div class="grid grid-rows-flow md:grid-cols-2 grid-cols-1 md:gap-20 gap-4 md:px-40 px-4 pb-20">
         <div class="rounded-md bg-slate-700 opacity-85 p-10 hidden md:inline-block">
@@ -44,4 +47,4 @@ import LayoutTwo from "@layouts/LayoutTwo.astro";
             <Skill widthIcon="70" heightIcon="70" nameIcon="GoogleCloudIcon" percentage="90" />
         </div>
     </div>
-</Layout>
+</LayoutTwo>
