@@ -5,11 +5,7 @@ import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
-<<<<<<< Updated upstream
-  site: 'https://julianjjo.github.io', // Replace with your actual domain
-=======
-  site: 'https://julianjjo.github.io',
->>>>>>> Stashed changes
+  site: 'https://julian-dev.dev',
   integrations: [tailwind(), sitemap()],
   output: "server",
   adapter: node({
