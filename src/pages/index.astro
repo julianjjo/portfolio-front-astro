@@ -5,94 +5,183 @@ import LinkedinIcon from "@icons/LinkedinIcon.astro";
 import PhoneIcon from "@icons/PhoneIcon.astro";
 ---
 
-<Layout 
-  title="About Me" 
-  description="I am a seasoned Backend Developer with 8 years of experience specializing in Java, JavaScript, Python, and PHP. Explore my portfolio and expertise."
+<Layout
+  title="Julian Mican | Backend & Full Stack Expert"
+  description="Seasoned Backend Developer with 8 years of experience. Specializing in robust, scalable solutions with Java, Python, and JavaScript."
 >
-  <div class="flex flex-col items-center justify-center md:h-full">
-    <div class="container mx-auto md:px-40 px-2">
-      <div class="text-center md:py-20 py-8">
+  <div
+    class="relative flex flex-col items-center justify-center pt-32 pb-20 px-4"
+  >
+    <div class="max-w-4xl mx-auto">
+      <!-- Title Section -->
+      <div
+        class="text-center mb-12 animate-in fade-in slide-in-from-bottom-8 duration-700"
+      >
         <h1
-          class="text-7xl font-bold items-center h-10 text-slate-100"
-          role="heading"
+          class="text-6xl md:text-8xl font-black mb-4 playfair-display bg-clip-text text-transparent bg-gradient-to-r from-slate-100 to-slate-400"
           id="animatedTitle"
         >
-        About Me
+          About Me
         </h1>
-      </div>
-      <div class="text-center py-8 text-xl text-slate-200">
-        <p>
-          I am a seasoned Backend Developer with 8 years of experience
-          specializing in creating robust, scalable solutions using <span
-            class="font-bold">Java</span
-          >, <span class="font-bold">JavaScript</span>, <span class="font-bold"
-            >Python</span
-          >, and <span class="font-bold">PHP</span>. My expertise extends to
-          Full Stack development, proficiently using <span class="font-bold"
-            >JavaScript</span
-          >, <span class="font-bold">TypeScript</span>, <span class="font-bold"
-            >CSS</span
-          >, and <span class="font-bold">HTML</span> to deliver dynamic and responsive
-          user interfaces.
-        </p>
-      </div>
-      <div class="text-center pb-20 italic text-slate-200">
-        <p>
-          My journey in tech has also embraced cloud technologies, managing
-          high-quality technical implementations on AWS and Google Cloud.
-          Whether working on microservices or monolithic architectures, I
-          prioritize clean code, technical excellence, and clean architecture
-          principles to drive efficient and effective solutions.
-        </p>
-      </div>
-      <div class="flex justify-center pb-20">
-        <a
-          href="https://www.linkedin.com/in/julian-ariel-mican-franco-87a08574/?locale=en_US"
-          target="_blank"
-          class="p-6 hover:animate-bounce"
-          ><LinkedinIcon width="40" height="40" /></a
+        <div
+          class="h-1 w-24 bg-gradient-to-r from-violet-500 to-cyan-500 mx-auto rounded-full shadow-[0_0_15px_rgba(139,92,246,0.5)]"
         >
-        <a
-          href="https://github.com/julianjjo"
-          target="_blank"
-          class="p-6 hover:animate-bounce"
-          ><GithubIcon width="40" height="40" /></a
+        </div>
+      </div>
+
+      <!-- Content Section -->
+      <div
+        class="glass-card rounded-3xl p-8 md:p-12 space-y-8 animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-200"
+      >
+        <div
+          class="text-lg md:text-xl text-slate-300 leading-relaxed text-center italic"
         >
-        <a href="tel:+573225107534" class="p-6 hover:animate-bounce"
-          ><PhoneIcon width="40" height="40" /></a
+          <p id="typingEffect" class="min-h-[120px]">
+            <!-- Typing effect will populate this -->
+          </p>
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-white/5"
         >
+          <div class="space-y-4">
+            <h3
+              class="text-sm uppercase tracking-widest text-violet-400 font-bold"
+            >
+              Core Expertise
+            </h3>
+            <p class="text-slate-400 leading-relaxed">
+              8 years of building high-performance systems. I bridge the gap
+              between complex backend logic and seamless frontend experiences
+              using <span class="text-white font-medium">Java</span>, <span
+                class="text-white font-medium">Python</span
+              >, and <span class="text-white font-medium">Node.js</span>.
+            </p>
+          </div>
+          <div class="space-y-4">
+            <h3
+              class="text-sm uppercase tracking-widest text-cyan-400 font-bold"
+            >
+              Cloud & Architecture
+            </h3>
+            <p class="text-slate-400 leading-relaxed">
+              Architecting the future on <span class="text-white font-medium"
+                >AWS</span
+              > and <span class="text-white font-medium">GCP</span>. Expert in
+              microservices, clean architecture, and delivering technical
+              excellence at scale.
+            </p>
+          </div>
+        </div>
+
+        <!-- Social Icons -->
+        <div class="flex justify-center gap-6 pt-12 border-t border-white/5">
+          <a
+            href="https://www.linkedin.com/in/julian-ariel-mican-franco-87a08574/?locale=en_US"
+            target="_blank"
+            class="p-4 group glass-card rounded-2xl hover:scale-110 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+            title="LinkedIn"
+          >
+            <LinkedinIcon
+              width="32"
+              height="32"
+              class="group-hover:text-white"
+            />
+          </a>
+          <a
+            href="https://github.com/julianjjo"
+            target="_blank"
+            class="p-4 group glass-card rounded-2xl hover:scale-110 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+            title="GitHub"
+          >
+            <GithubIcon width="32" height="32" class="group-hover:text-white" />
+          </a>
+          <a
+            href="tel:+573225107534"
+            class="p-4 group glass-card rounded-2xl hover:scale-110 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+            title="Call Me"
+          >
+            <PhoneIcon width="32" height="32" class="group-hover:text-white" />
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </Layout>
 
 <style>
-  .playfair-display {
-    font-family: "Playfair Display", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
+  .animate-in {
+    animation-fill-mode: both;
+  }
+  .fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+  .slide-in-from-bottom-8 {
+    animation: slideInBottom8 0.8s ease-out;
+  }
+  .slide-in-from-bottom-12 {
+    animation: slideInBottom12 1s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes slideInBottom8 {
+    from {
+      transform: translateY(32px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  @keyframes slideInBottom12 {
+    from {
+      transform: translateY(48px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  #typingEffect::after {
+    content: "|";
+    animation: blink 1s step-end infinite;
+    color: #8b5cf6;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    from,
+    to {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
   }
 </style>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    var titleElement = document.getElementById("animatedTitle");
-    setInterval(function () {
-      var titleText = "About Me"; // Aquí escribes tu título
-      var currentIndex = 0;
-      var interval = setInterval(function () {
-        if (currentIndex < titleText.length) {
-          if (titleElement) {
-            titleElement.textContent += titleText[currentIndex++];
-          }
-        } else {
-          clearInterval(interval);
-        }
-      }, 100);
-      if (titleElement) {
-        titleElement.textContent = "";
+  const text =
+    "I am a seasoned Backend Developer specializing in robust, scalable solutions. My journey has embraced cloud technologies and technical excellence to drive architectural innovation.";
+  const container = document.getElementById("typingEffect");
+  let index = 0;
+
+  function typeText() {
+    if (index < text.length) {
+      if (container) {
+        container.textContent += text[index];
+        index++;
+        setTimeout(typeText, Math.random() * 30 + 20); // Natural pacing
       }
-    }, 2000);
-  });
+    }
+  }
+
+  // Start after basic entry animation
+  setTimeout(typeText, 1200);
 </script>

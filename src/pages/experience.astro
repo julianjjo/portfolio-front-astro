@@ -1,22 +1,60 @@
 ---
 import ExperienceCards from "@components/ExperienceCards.astro";
-import LayoutTwo from "@layouts/LayoutTwo.astro";
+import Layout from "@layouts/Layout.astro";
 ---
 
-<LayoutTwo 
-  title="Experience" 
+<Layout
+  title="Professional Experience | Julian Mican"
   description="Explore my professional journey as a Backend Developer, working with various technologies and architectures over 8 years."
 >
+  <div class="relative pt-32 pb-20 max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-12 animate-in fade-in slide-in-from-bottom-8">
+      <h1
+        class="text-5xl md:text-7xl font-black playfair-display mb-4 bg-clip-text text-transparent bg-gradient-to-r from-slate-100 to-slate-400"
+      >
+        Professional Journey
+      </h1>
+      <div
+        class="h-1 w-24 bg-gradient-to-r from-violet-500 to-cyan-500 mx-auto rounded-full shadow-[0_0_15px_rgba(139,92,246,0.3)]"
+      >
+      </div>
+      <p class="text-slate-400 mt-6 max-w-2xl mx-auto text-lg">
+        8 years of experience building mission-critical systems and scalable
+        architectures.
+      </p>
+    </div>
+
     <div class="container mx-auto">
       <ExperienceCards />
     </div>
-</LayoutTwo>
+  </div>
+</Layout>
 
 <style>
-  .playfair-display {
-    font-family: "Playfair Display", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-	}
+  .animate-in {
+    animation-fill-mode: both;
+  }
+  .fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+  .slide-in-from-bottom-8 {
+    animation: slideInBottom8 0.8s ease-out;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes slideInBottom8 {
+    from {
+      transform: translateY(32px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
 </style>

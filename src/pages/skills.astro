@@ -1,50 +1,131 @@
 ---
 import Skill from "@components/Skill.astro";
-import LayoutTwo from "@layouts/LayoutTwo.astro";
+import Layout from "@layouts/Layout.astro";
 
+const backendSkills = [
+    { nameIcon: "JavaIcon", percentage: "98" },
+    { nameIcon: "PhpIcon", percentage: "99" },
+    { nameIcon: "PythonIcon", percentage: "98" },
+    { nameIcon: "NodeJsIcon", percentage: "90" },
+    { nameIcon: "SpringBootIcon", percentage: "95" },
+    { nameIcon: "NestJsIcon", percentage: "95" },
+    { nameIcon: "SymfonyIcon", percentage: "90" },
+];
 
+const otherSkills = [
+    { nameIcon: "TsIcon", percentage: "90" },
+    { nameIcon: "CssIcon", percentage: "95" },
+    { nameIcon: "HtmlIcon", percentage: "95" },
+    { nameIcon: "MySqlIcon", percentage: "98" },
+    { nameIcon: "PostgreSqlIcon", percentage: "98" },
+    { nameIcon: "AwsIcon", percentage: "90" },
+    { nameIcon: "GoogleCloudIcon", percentage: "90" },
+];
 ---
-<LayoutTwo 
-  title="Skills" 
-  description="Technical skills and expertise in Java, PHP, Python, JavaScript, TypeScript, Node.js, Spring Boot, AWS, and more."
+
+<Layout
+    title="Technical Expertise | Julian Mican"
+    description="Extensive experience in Java, PHP, Python, and modern cloud architectures."
 >
-    <div class="container mx-auto md:px-40 px-4 mb-10">
-        <h1 class="text-3xl font-bold items-center mt-14 text-slate-100">Skills</h1>
+    <div class="relative pt-32 pb-20 px-4 md:px-20 max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-16 animate-slide-up">
+            <h1
+                class="text-5xl md:text-7xl font-black playfair-display mb-4 bg-clip-text text-transparent bg-gradient-to-r from-slate-100 to-slate-400"
+            >
+                Skills & Expertise
+            </h1>
+            <p class="text-slate-400 max-w-2xl mx-auto text-lg">
+                A comprehensive toolkit built over 8 years of professional
+                development, focusing on backend scalability and cloud
+                excellence.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Backend Section -->
+            <section
+                class="space-y-6 animate-slide-up"
+                style="animation-delay: 200ms"
+            >
+                <div class="flex items-center gap-4 mb-8">
+                    <div
+                        class="h-px flex-grow bg-gradient-to-r from-transparent to-white/10"
+                    >
+                    </div>
+                    <h2
+                        class="text-sm uppercase tracking-[0.3em] font-bold text-violet-400"
+                    >
+                        Main Stack
+                    </h2>
+                    <div
+                        class="h-px flex-grow bg-gradient-to-l from-transparent to-white/10"
+                    >
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
+                    {
+                        backendSkills.map((skill) => (
+                            <Skill
+                                widthIcon="40"
+                                heightIcon="40"
+                                nameIcon={skill.nameIcon}
+                                percentage={skill.percentage}
+                            />
+                        ))
+                    }
+                </div>
+            </section>
+
+            <!-- Others Section -->
+            <section
+                class="space-y-6 animate-slide-up"
+                style="animation-delay: 400ms"
+            >
+                <div class="flex items-center gap-4 mb-8">
+                    <div
+                        class="h-px flex-grow bg-gradient-to-r from-transparent to-white/10"
+                    >
+                    </div>
+                    <h2
+                        class="text-sm uppercase tracking-[0.3em] font-bold text-cyan-400"
+                    >
+                        Tools & Cloud
+                    </h2>
+                    <div
+                        class="h-px flex-grow bg-gradient-to-l from-transparent to-white/10"
+                    >
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
+                    {
+                        otherSkills.map((skill) => (
+                            <Skill
+                                widthIcon="40"
+                                heightIcon="40"
+                                nameIcon={skill.nameIcon}
+                                percentage={skill.percentage}
+                            />
+                        ))
+                    }
+                </div>
+            </section>
+        </div>
     </div>
-    <div class="grid grid-rows-flow md:grid-cols-2 grid-cols-1 md:gap-20 gap-4 md:px-40 px-4 pb-20">
-        <div class="rounded-md bg-slate-700 opacity-85 p-10 hidden md:inline-block">
-            <Skill widthIcon="70" heightIcon="70" nameIcon="JavaIcon" percentage="98" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="PhpIcon" percentage="99" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="PythonIcon" percentage="98" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="TsIcon" percentage="90" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="NodeJsIcon" percentage="90" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="SpringBootIcon" percentage="95" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="SymfonyIcon" percentage="90" />
-        </div>
-        <div class="rounded-md bg-slate-700 opacity-85 p-10 hidden md:inline-block">
-            <Skill widthIcon="70" heightIcon="70" nameIcon="NestJsIcon" percentage="95" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="CssIcon" percentage="95" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="HtmlIcon" percentage="95" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="MySqlIcon" percentage="98" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="PostgreSqlIcon" percentage="98" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="AwsIcon" percentage="90" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="GoogleCloudIcon" percentage="90" />
-        </div>
-        <div class="md:hidden rounded-md bg-slate-700 opacity-85 p-10">
-            <Skill widthIcon="70" heightIcon="70" nameIcon="JavaIcon" percentage="98" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="PhpIcon" percentage="99" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="PythonIcon" percentage="98" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="TsIcon" percentage="90" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="NodeJsIcon" percentage="90" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="SpringBootIcon" percentage="95" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="SymfonyIcon" percentage="90" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="NestJsIcon" percentage="95" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="CssIcon" percentage="95" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="HtmlIcon" percentage="95" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="MySqlIcon" percentage="98" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="PostgreSqlIcon" percentage="98" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="AwsIcon" percentage="90" />
-            <Skill widthIcon="70" heightIcon="70" nameIcon="GoogleCloudIcon" percentage="90" />
-        </div>
-    </div>
-</LayoutTwo>
+</Layout>
+
+<style>
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .animate-slide-up {
+        animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    }
+</style>

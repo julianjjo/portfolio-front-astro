@@ -6,7 +6,7 @@ const experiences = [
     title: "Farmatodo",
     time: "Currently, 2 years",
     description:
-      'Backend developer in <span class="font-bold">Spring Boot</span> and <span class="font-bold">NestJS</span>, developing new functionalities for microservices, working with <span class="font-bold">OracleDB</span> and <span class="font-bold">PostgreSQL</span>. Additionally, I excel in crafting <span class="font-bold">Python</span> scripts for automation and data manipulation, further enhancing operational efficiency and system integration.',
+      'Backend developer in <span class="text-white font-bold">Spring Boot</span> and <span class="text-white font-bold">NestJS</span>, developing new functionalities for microservices, working with <span class="text-white font-bold">OracleDB</span> and <span class="text-white font-bold">PostgreSQL</span>. Additionally, I excel in crafting <span class="text-white font-bold">Python</span> scripts for automation and data manipulation.',
     logos: [
       { key: 0, svg: "JavaIcon" },
       { key: 1, svg: "NodeJsIcon" },
@@ -22,7 +22,7 @@ const experiences = [
     title: "Sophos Solutions",
     time: "2 years",
     description:
-      'Developed a platform for creating automated tests using <span class="font-bold">Java</span> with <span class="font-bold">Spring Boot</span> and <span class="font-bold">Angular</span>, targeting testers without Automation experience.',
+      'Developed a platform for creating automated tests using <span class="text-white font-bold">Java</span> with <span class="text-white font-bold">Spring Boot</span> and <span class="text-white font-bold">Angular</span>, targeting testers without Automation experience.',
     logos: [
       { key: 0, svg: "JavaIcon" },
       { key: 1, svg: "PostgreSqlIcon" },
@@ -37,7 +37,7 @@ const experiences = [
     title: "ElTiempo",
     time: "3 years",
     description:
-      'Full stack developer using <span class="font-bold">Angular</span> and <span class="font-bold">Symfony</span>. Improved and added new functionalities to their news website.',
+      'Full stack developer using <span class="text-white font-bold">Angular</span> and <span class="text-white font-bold">Symfony</span>. Improved and added new functionalities to their news website.',
     logos: [
       { key: 0, svg: "SymfonyIcon" },
       { key: 1, svg: "PhpIcon" },
@@ -48,10 +48,10 @@ const experiences = [
     ],
   },
   {
-    title: "Ministry of Environment and Sustainable Development of Colombia",
+    title: "Ministry of Environment",
     time: "1 year",
     description:
-      'Developed new functionalities for an LMS platform using <span class="font-bold">PHP</span> and <span class="font-bold">MySQL</span>.',
+      'Developed new functionalities for an LMS platform using <span class="text-white font-bold">PHP</span> and <span class="text-white font-bold">MySQL</span>.',
     logos: [
       { key: 0, svg: "PhpIcon" },
       { key: 1, svg: "MySqlIcon" },
@@ -64,7 +64,7 @@ const experiences = [
     title: "Fusagasuga City Hall",
     time: "9 months",
     description:
-      'Full stack developer with <span class="font-bold">Symfony</span>, <span class="font-bold">CSS</span>, <span class="font-bold">HTML</span>. Developed an open data platform.',
+      'Full stack developer with <span class="text-white font-bold">Symfony</span>, <span class="text-white font-bold">CSS</span>, <span class="text-white font-bold">HTML</span>. Developed an open data platform.',
     logos: [
       { key: 0, svg: "SymfonyIcon" },
       { key: 1, svg: "PhpIcon" },
@@ -77,35 +77,39 @@ const experiences = [
 ];
 ---
 
-<div class="grid sm:grid-cols-2 md:grid-cols-2 grid-rows-2 md:mx-28 md:mt-10">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 md:px-20 py-10">
   {
     experiences.map((experience, index) => (
       <div
-        id={"card-" + index}
-        class="bg-white bg-opacity-80 shadow-md shadow-slate-800 md:mx-3 rounded-3xl scale-90 md:hover:scale-100 md:transition md:duration-300 md:ease-in-out"
+        class="glass-card group flex flex-col rounded-3xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] border-white/5 hover:border-white/20 animate-slide-up"
+        style={`animation-delay: ${index * 150}ms`}
       >
-        <div class="bg-slate-800 rounded-t-3xl md:h-60">
-          <div class="pt-8 text-left text-sm">
-            <span class="rounded-full shadow-sm bg-gray-300 ml-8 p-2 text-slate-900">
+        <!-- Card Header -->
+        <div class="p-8 pb-4 relative overflow-hidden">
+          <div class="absolute top-0 right-0 p-4">
+             <span class="text-[10px] uppercase tracking-tighter text-slate-500 font-bold border border-white/10 px-3 py-1 rounded-full group-hover:border-violet-500/50 transition-colors">
               {experience.time}
             </span>
           </div>
-          <div>
-            <h3 class="text-4xl font-semibold text-white p-8">
-              {experience.title}
-            </h3>
-          </div>
+          <h3 class="text-3xl font-black text-white group-hover:text-violet-400 transition-colors playfair-display mb-2 mt-4">
+            {experience.title}
+          </h3>
+          <div class="h-1 w-12 bg-violet-600 rounded-full group-hover:w-24 transition-all duration-500"></div>
         </div>
-        <div class="flex items-center pt-8 pb-8 h-64">
+
+        <!-- Description -->
+        <div class="px-8 flex-grow flex items-center">
           <p
-            class="text-lg text-justify text-zinc-700 px-8 pt-8"
+            class="text-slate-400 leading-relaxed text-sm md:text-base group-hover:text-slate-300 transition-colors"
             set:html={experience.description}
           />
         </div>
-        <div class="grid grid-rows-2 grid-cols-4 md:grid-rows-2 md:grid-cols-5">
+
+        <!-- Logos / Stack -->
+        <div class="p-8 grid grid-cols-5 gap-4 filter grayscale group-hover:grayscale-0 transition-all duration-500 border-t border-white/5 mt-6">
           {experience.logos.map((logo) => (
-            <div class="flex items-center justify-center md:mx-4 mb-8">
-              <Icons width="50" height="50" name={logo.svg} />
+            <div class="flex items-center justify-center hover:scale-125 transition-transform" title={logo.svg.replace('Icon', '')}>
+              <Icons width="30" height="30" name={logo.svg} />
             </div>
           ))}
         </div>
@@ -115,47 +119,18 @@ const experiences = [
 </div>
 
 <style>
-  .my-3percent {
-    padding-top: 10%;
-    padding-bottom: 10%;
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   }
 </style>
-
-<script>
-  window.addEventListener("load", function (event) {
-    // find by id card-0
-    const card0 = document.getElementById("card-0");
-    if (card0) {
-      scaleUpCard(0);
-      setTimeout(() => scaleDownCard(0), 600);
-    }
-    const card1 = document.getElementById("card-1");
-    if (card1) {
-      setTimeout(() => scaleUpCard(1), 1200);
-      setTimeout(() => scaleDownCard(1), 1800);
-    }
-  });
-
-  function scaleUpCard(index: number) {
-    const card = document.getElementById("card-" + index);
-    if (card) {
-      card.classList.remove("scale-90");
-      card.classList.add("scale-100");
-    }
-  }
-
-  function scaleDownCard(index: number) {
-    const card = document.getElementById("card-" + index);
-    if (card) {
-      card.classList.remove("scale-100");
-      card.classList.add("scale-90");
-    }
-  }
-
-  function forActiveHover(index: number) {
-    const card = document.getElementById("card-" + index);
-    if (card) {
-      card.classList.add("md:hover:scale-100");
-    }
-  }
-</script>
