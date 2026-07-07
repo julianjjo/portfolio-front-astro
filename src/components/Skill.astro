@@ -5,14 +5,16 @@ interface Props {
   widthIcon: string;
   heightIcon: string;
   nameIcon: string;
+  label?: string;
   percentage: string;
 }
 
-const { nameIcon, widthIcon, heightIcon, percentage } = Astro.props;
+const { nameIcon, widthIcon, heightIcon, label, percentage } = Astro.props;
+const displayName = label ?? nameIcon.replace("Icon", "");
 ---
 
 <div
-  class="group flex flex-col gap-4 p-6 glass-card rounded-2xl hover:border-violet-500/50 transition-all duration-300"
+  class="group flex flex-col gap-4 p-6 glass-card rounded-2xl hover:border-[color:var(--accent-soft)] transition-all duration-300"
 >
   <div class="flex items-center gap-4">
     <div
@@ -25,9 +27,9 @@ const { nameIcon, widthIcon, heightIcon, percentage } = Astro.props;
         <span
           class="text-sm font-bold text-slate-300 group-hover:text-white transition-colors tracking-wide uppercase"
         >
-          {nameIcon.replace("Icon", "")}
+          {displayName}
         </span>
-        <span class="text-xs font-mono text-violet-400 font-bold"
+        <span class="text-xs plex-mono accent-text font-semibold"
           >{percentage}%</span
         >
       </div>
@@ -35,12 +37,23 @@ const { nameIcon, widthIcon, heightIcon, percentage } = Astro.props;
         class="w-full bg-white/5 rounded-full h-1.5 overflow-hidden border border-white/5"
       >
         <div
-          class="h-full rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 shadow-[0_0_10px_rgba(139,92,246,0.3)] transition-all duration-1000 ease-out"
-          style={`width: ${percentage}%`}
-          id={nameIcon + "Id"}
+          class="skill-bar h-full rounded-full accent-gradient"
+          style={`width: ${percentage}%; box-shadow: 0 0 10px var(--accent-soft);`}
         >
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  .skill-bar {
+    animation: fillBar 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;
+  }
+
+  @keyframes fillBar {
+    from {
+      width: 0;
+    }
+  }
+</style>

@@ -34,9 +34,15 @@ const { title, description } = Astro.props;
 </html>
 <style is:global>
   :root {
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
+    /* Living accent: --accent-h is written by the canvas animation every few
+       frames, so every accent below drifts in sync with the neon web behind
+       the page. It starts (and, with reduced motion, stays) at brand violet. */
+    --accent-h: 270;
+    --accent: hsl(var(--accent-h) 84% 66%);
+    --accent-deep: hsl(var(--accent-h) 84% 45%);
+    --accent-soft: hsl(var(--accent-h) 84% 66% / 0.35);
+    --accent-faint: hsl(var(--accent-h) 84% 66% / 0.12);
+    --accent-2: hsl(calc(var(--accent-h) - 70) 84% 62%);
     --glass-bg: rgba(15, 23, 42, 0.7);
     --glass-border: rgba(255, 255, 255, 0.1);
   }
@@ -57,6 +63,43 @@ const { title, description } = Astro.props;
 
   .playfair-display {
     font-family: "Playfair Display", serif;
+  }
+
+  .plex-mono {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  /* Section label: mono eyebrow tinted by the living accent */
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  @media (max-width: 640px) {
+    .eyebrow {
+      font-size: 0.6875rem;
+      letter-spacing: 0.2em;
+    }
+  }
+
+  .eyebrow-alt {
+    color: var(--accent-2);
+  }
+
+  .accent-text {
+    color: var(--accent);
+  }
+
+  .accent-gradient {
+    background-image: linear-gradient(90deg, var(--accent), var(--accent-2));
+  }
+
+  .accent-gradient-deep {
+    background-image: linear-gradient(135deg, var(--accent), var(--accent-deep));
   }
 
   /* Glassmorphism 2.0 */
@@ -85,7 +128,30 @@ const { title, description } = Astro.props;
     opacity: 0.03;
     z-index: 1000;
     pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3BaseFilter id='noiseFilter'%3BfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3B/filter%3Brect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3B/svg%3B");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+    color: #f8fafc;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   /* Custom Scrollbar */
@@ -105,7 +171,7 @@ const { title, description } = Astro.props;
 
   code {
     font-family:
-      "JetBrains Mono",
+      "IBM Plex Mono",
       Menlo,
       Monaco,
       Lucida Console,

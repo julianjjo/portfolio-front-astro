@@ -10,23 +10,23 @@ import Toast from "./Toast.astro";
   >
     <!-- Decorative element -->
     <div
-      class="absolute top-0 left-0 w-24 h-24 bg-violet-600/10 blur-3xl pointer-events-none"
+      class="absolute top-0 left-0 w-24 h-24 blur-3xl pointer-events-none"
+      style="background: var(--accent-faint);"
     >
     </div>
     <div
-      class="absolute bottom-0 right-0 w-32 h-32 bg-cyan-600/10 blur-3xl pointer-events-none"
+      class="absolute bottom-0 right-0 w-32 h-32 blur-3xl pointer-events-none"
+      style="background: hsl(calc(var(--accent-h) - 70) 84% 62% / 0.12);"
     >
     </div>
 
     <div class="mb-10 text-center md:text-left">
-      <h2
-        class="text-4xl font-black text-white playfair-display mb-2"
-        id="animated-text"
-      >
-        Contact Me
+      <p class="eyebrow mb-3">Contact</p>
+      <h2 class="text-4xl font-black text-white playfair-display mb-2">
+        Let's talk
       </h2>
       <p class="text-slate-400 text-sm">
-        Have a project in mind? Let's build something extraordinary.
+        Have a project in mind? Tell me about it — I reply within a day.
       </p>
     </div>
 
@@ -34,7 +34,7 @@ import Toast from "./Toast.astro";
       <div class="space-y-2">
         <label
           for="email"
-          class="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1"
+          class="plex-mono text-xs font-semibold uppercase tracking-widest text-slate-400 ml-1"
           >Email Address</label
         >
         <input
@@ -43,14 +43,14 @@ import Toast from "./Toast.astro";
           type="email"
           placeholder="your@email.com"
           required
-          class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50 focus:ring-4 focus:ring-violet-500/10 transition-all duration-300"
+          class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-white placeholder:text-slate-600 focus:outline-none focus:border-[color:var(--accent-soft)] focus:ring-4 focus:ring-[color:var(--accent-faint)] transition-all duration-300"
         />
       </div>
 
       <div class="space-y-2">
         <label
           for="subject"
-          class="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1"
+          class="plex-mono text-xs font-semibold uppercase tracking-widest text-slate-400 ml-1"
           >Subject</label
         >
         <input
@@ -59,7 +59,7 @@ import Toast from "./Toast.astro";
           id="subject"
           placeholder="New Collaboration"
           required
-          class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-white placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/50 focus:ring-4 focus:ring-cyan-500/10 transition-all duration-300"
+          class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-white placeholder:text-slate-600 focus:outline-none focus:border-[color:var(--accent-soft)] focus:ring-4 focus:ring-[color:var(--accent-faint)] transition-all duration-300"
         />
       </div>
     </div>
@@ -67,7 +67,7 @@ import Toast from "./Toast.astro";
     <div class="space-y-2 mb-10">
       <label
         for="message"
-        class="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1"
+        class="plex-mono text-xs font-semibold uppercase tracking-widest text-slate-400 ml-1"
         >Your Message</label
       >
       <textarea
@@ -76,28 +76,26 @@ import Toast from "./Toast.astro";
         rows={6}
         required
         placeholder="Tell me about your project..."
-        class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-white placeholder:text-slate-600 focus:outline-none focus:border-violet-500/50 focus:ring-4 focus:ring-violet-500/10 transition-all duration-300 resize-none"
+        class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-white placeholder:text-slate-600 focus:outline-none focus:border-[color:var(--accent-soft)] focus:ring-4 focus:ring-[color:var(--accent-faint)] transition-all duration-300 resize-none"
       ></textarea>
     </div>
 
     <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
       <p
-        class="text-[10px] text-slate-500 max-w-[250px] text-center sm:text-left"
+        class="plex-mono text-[10px] text-slate-500 max-w-[250px] text-center sm:text-left"
       >
-        I typically respond within 24 hours. Your data is handled with technical
-        excellence.
+        Your message goes straight to my inbox.
       </p>
       <div class="flex gap-4 w-full sm:w-auto">
         <button
-          type="button"
+          type="reset"
           class="flex-grow sm:flex-grow-0 px-8 py-4 rounded-2xl border border-white/5 text-slate-400 hover:text-white hover:bg-white/5 transition-all text-sm font-bold uppercase tracking-widest"
-          onclick="window.location.reload()"
         >
-          Cancel
+          Clear
         </button>
         <button
           type="submit"
-          class="flex-grow sm:flex-grow-0 px-10 py-4 rounded-2xl bg-gradient-to-r from-violet-600 to-violet-800 text-white shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_30px_rgba(139,92,246,0.5)] hover:-translate-y-1 active:translate-y-0 transition-all text-sm font-bold uppercase tracking-widest"
+          class="flex-grow sm:flex-grow-0 px-10 py-4 rounded-2xl accent-gradient-deep text-white shadow-[0_0_20px_var(--accent-soft)] hover:shadow-[0_0_30px_var(--accent-soft)] hover:-translate-y-1 active:translate-y-0 transition-all text-sm font-bold uppercase tracking-widest"
         >
           Send Message
         </button>
