@@ -1,54 +1,64 @@
-# Astro Starter Kit: Basics
+# julian-dev.dev
+
+Source of [julian-dev.dev](https://julian-dev.dev), the personal portfolio of Julian Mican — backend & full stack developer. Built with Astro 4 (SSR) and Tailwind CSS, rendered over an animated neon canvas that drives the site's accent color in real time.
+
+The contact form is backed by [portfolio-back](https://github.com/julianjjo/portfolio-back), a Rust/Rocket API served at `api.julian-dev.dev`.
+
+## Stack
+
+- [Astro 4](https://astro.build) in server output mode, with the Node adapter (middleware mode)
+- [Tailwind CSS 3](https://tailwindcss.com) plus a small set of design tokens in `src/layouts/Layout.astro`
+- Express (`run-server.mjs`) as the production entry point: serves the static client build, runs the SSR handler, and proxies `/api/*` to the backend
+
+## Getting started
 
 ```sh
-npm create astro@latest -- --template basics
+npm install
+npm run dev
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+The dev server runs at `localhost:4321`.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+> **Note:** `/api/*` is only proxied by the production server (`run-server.mjs`). In `npm run dev` the contact form's `POST /api/contact_me` has nothing to answer it — point it at a local backend or test the form against a production build (`npm run build && npm start`).
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## Commands
 
-## 🚀 Project Structure
+| Command           | Action                                                                                     |
+| :---------------- | :----------------------------------------------------------------------------------------- |
+| `npm install`     | Install dependencies                                                                        |
+| `npm run dev`     | Start the dev server at `localhost:4321`                                                    |
+| `npm run build`   | Type-check (`astro check`) and build to `./dist/`                                           |
+| `npm run preview` | Preview the build locally                                                                   |
+| `npm start`       | Run the production server: SSR + static assets + `/api` proxy, on `PORT` (defaults to 4000) |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Project structure
 
 ```text
 /
 ├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+├── run-server.mjs          # production entry: express + SSR handler + /api proxy
+└── src/
+    ├── assets/
+    ├── components/         # Canvas, Navbar, ExperienceCards, FormContact, Toast, ...
+    ├── icons/
+    ├── layouts/
+    │   └── Layout.astro    # global styles and design tokens
+    └── pages/              # / (about), /experience, /skills, /contact
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Design system: the living accent
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+The background canvas (`src/components/Canvas.astro`) rotates its hue through the full spectrum on a ~60 second cycle and writes the current value to `--accent-h` on `<html>`. Every accent in the UI — eyebrows, hairlines, skill bars, button glow, focus rings, text selection — derives from that variable through the tokens in `src/layouts/Layout.astro` (`--accent`, `--accent-2`, `--accent-soft`, ...), so the whole page drifts in sync with the canvas behind it.
 
-Any static assets, like images, can be placed in the `public/` directory.
+The cycle starts at brand violet (270°). With `prefers-reduced-motion` the canvas renders a still frame instead of animating and the accent stays violet.
 
-## 🧞 Commands
+Typefaces: **Playfair Display** for display, **Outfit** for body, **IBM Plex Mono** for labels and data.
 
-All commands are run from the root of the project, from a terminal:
+## Deploying
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```sh
+npm run build
+npm start
+```
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+`npm start` expects the build output in `./dist/` and listens on `PORT` (defaults to 4000).
