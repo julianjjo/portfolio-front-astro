@@ -1,10 +1,10 @@
 ---
 interface Props {
   type: string;
-  className: string;
+  className?: string;
 }
 
-const { type, className } = Astro.props;
+const { type, className = "" } = Astro.props;
 
 const variants: Record<
   string,
