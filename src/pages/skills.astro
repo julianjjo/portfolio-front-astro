@@ -3,23 +3,23 @@ import Skill from "@components/Skill.astro";
 import Layout from "@layouts/Layout.astro";
 
 const backendSkills = [
-    { nameIcon: "JavaIcon", percentage: "98" },
-    { nameIcon: "PhpIcon", percentage: "99" },
-    { nameIcon: "PythonIcon", percentage: "98" },
-    { nameIcon: "NodeJsIcon", percentage: "90" },
-    { nameIcon: "SpringBootIcon", percentage: "95" },
-    { nameIcon: "NestJsIcon", percentage: "95" },
-    { nameIcon: "SymfonyIcon", percentage: "90" },
+    { nameIcon: "JavaIcon", label: "Java", percentage: "98" },
+    { nameIcon: "PhpIcon", label: "PHP", percentage: "99" },
+    { nameIcon: "PythonIcon", label: "Python", percentage: "98" },
+    { nameIcon: "NodeJsIcon", label: "Node.js", percentage: "90" },
+    { nameIcon: "SpringBootIcon", label: "Spring Boot", percentage: "95" },
+    { nameIcon: "NestJsIcon", label: "NestJS", percentage: "95" },
+    { nameIcon: "SymfonyIcon", label: "Symfony", percentage: "90" },
 ];
 
 const otherSkills = [
-    { nameIcon: "TsIcon", percentage: "90" },
-    { nameIcon: "CssIcon", percentage: "95" },
-    { nameIcon: "HtmlIcon", percentage: "95" },
-    { nameIcon: "MySqlIcon", percentage: "98" },
-    { nameIcon: "PostgreSqlIcon", percentage: "98" },
-    { nameIcon: "AwsIcon", percentage: "90" },
-    { nameIcon: "GoogleCloudIcon", percentage: "90" },
+    { nameIcon: "TsIcon", label: "TypeScript", percentage: "90" },
+    { nameIcon: "CssIcon", label: "CSS", percentage: "95" },
+    { nameIcon: "HtmlIcon", label: "HTML", percentage: "95" },
+    { nameIcon: "MySqlIcon", label: "MySQL", percentage: "98" },
+    { nameIcon: "PostgreSqlIcon", label: "PostgreSQL", percentage: "98" },
+    { nameIcon: "AwsIcon", label: "AWS", percentage: "90" },
+    { nameIcon: "GoogleCloudIcon", label: "Google Cloud", percentage: "90" },
 ];
 ---
 
@@ -30,11 +30,17 @@ const otherSkills = [
     <div class="relative pt-32 pb-20 px-4 md:px-20 max-w-7xl mx-auto">
         <!-- Header -->
         <div class="text-center mb-16 animate-slide-up">
+            <p class="eyebrow mb-5">Skills</p>
             <h1
-                class="text-5xl md:text-7xl font-black playfair-display mb-4 bg-clip-text text-transparent bg-gradient-to-r from-slate-100 to-slate-400"
+                class="text-5xl md:text-7xl font-black playfair-display mb-6 bg-clip-text text-transparent bg-gradient-to-r from-slate-100 to-slate-400"
             >
                 Skills & Expertise
             </h1>
+            <div
+                class="h-px w-24 accent-gradient mx-auto rounded-full mb-6"
+                style="box-shadow: 0 0 15px var(--accent-soft);"
+            >
+            </div>
             <p class="text-slate-400 max-w-2xl mx-auto text-lg">
                 A comprehensive toolkit built over 8 years of professional
                 development, focusing on backend scalability and cloud
@@ -53,9 +59,7 @@ const otherSkills = [
                         class="h-px flex-grow bg-gradient-to-r from-transparent to-white/10"
                     >
                     </div>
-                    <h2
-                        class="text-sm uppercase tracking-[0.3em] font-bold text-violet-400"
-                    >
+                    <h2 class="eyebrow">
                         Main Stack
                     </h2>
                     <div
@@ -63,13 +67,14 @@ const otherSkills = [
                     >
                     </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
+                <div class="grid grid-cols-1 gap-4">
                     {
                         backendSkills.map((skill) => (
                             <Skill
                                 widthIcon="40"
                                 heightIcon="40"
                                 nameIcon={skill.nameIcon}
+                                label={skill.label}
                                 percentage={skill.percentage}
                             />
                         ))
@@ -87,9 +92,7 @@ const otherSkills = [
                         class="h-px flex-grow bg-gradient-to-r from-transparent to-white/10"
                     >
                     </div>
-                    <h2
-                        class="text-sm uppercase tracking-[0.3em] font-bold text-cyan-400"
-                    >
+                    <h2 class="eyebrow eyebrow-alt">
                         Tools & Cloud
                     </h2>
                     <div
@@ -97,13 +100,14 @@ const otherSkills = [
                     >
                     </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
+                <div class="grid grid-cols-1 gap-4">
                     {
                         otherSkills.map((skill) => (
                             <Skill
                                 widthIcon="40"
                                 heightIcon="40"
                                 nameIcon={skill.nameIcon}
+                                label={skill.label}
                                 percentage={skill.percentage}
                             />
                         ))
