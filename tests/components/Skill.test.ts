@@ -1,6 +1,14 @@
+import { readFileSync } from "node:fs";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { beforeAll, describe, expect, it } from "vitest";
 import Skill from "../../src/components/Skill.astro";
+
+// Container renderToString doesn't inline a component's scoped <style> for
+// an isolated render, so the keyframes assertion below checks the raw source.
+const source = readFileSync(
+  new URL("../../src/components/Skill.astro", import.meta.url),
+  "utf-8",
+);
 
 let container: Awaited<ReturnType<typeof AstroContainer.create>>;
 
@@ -80,6 +88,6 @@ describe("Skill.astro", () => {
 
     expect(result).toContain("width: 77%;");
     expect(result).toContain("skill-bar");
-    expect(result).toMatch(/@keyframes fillBar\s*\{\s*from\s*\{\s*width:\s*0;/);
+    expect(source).toMatch(/@keyframes fillBar\s*\{\s*from\s*\{\s*width:\s*0;/);
   });
 });
