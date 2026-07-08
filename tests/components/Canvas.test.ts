@@ -26,11 +26,12 @@ describe("Canvas.astro markup", () => {
     expect(result).toContain('aria-hidden="true"');
   });
 
-  it("pins the canvas behind other content", async () => {
-    const result = await container.renderToString(Canvas);
-
-    expect(result).toMatch(/canvas#canvas\s*\{[^}]*position:\s*fixed/);
-    expect(result).toMatch(/canvas#canvas\s*\{[^}]*z-index:\s*-1/);
+  it("pins the canvas behind other content", () => {
+    // Container renderToString doesn't inline a component's scoped <style>
+    // for an isolated render, so this is checked against the raw source
+    // (see the module-script tests below for the same approach).
+    expect(source).toMatch(/canvas#canvas\s*\{[^}]*position:\s*fixed/);
+    expect(source).toMatch(/canvas#canvas\s*\{[^}]*z-index:\s*-1/);
   });
 });
 
