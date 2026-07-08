@@ -13,6 +13,7 @@ describe("ExperienceCards.astro", () => {
     const result = await container.renderToString(ExperienceCards);
 
     for (const title of [
+      "Global66",
       "Farmatodo",
       "Sophos Solutions",
       "ElTiempo",
@@ -21,7 +22,7 @@ describe("ExperienceCards.astro", () => {
     ]) {
       expect(result).toContain(title);
     }
-    expect(result).toContain("Currently, 2 years");
+    expect(result).toContain("Currently, 4 months");
   });
 
   it("ties hover glow and border colors to the living accent instead of a fixed violet", async () => {
@@ -46,6 +47,6 @@ describe("ExperienceCards.astro", () => {
     const result = await container.renderToString(ExperienceCards);
 
     const matches = result.match(/h-0\.5 w-12 accent-gradient/g) ?? [];
-    expect(matches.length).toBe(5);
+    expect(matches.length).toBe(6);
   });
 });
