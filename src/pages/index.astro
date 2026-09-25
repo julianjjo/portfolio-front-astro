@@ -1,5 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import TechGlobe from "@components/TechGlobe.astro";
 import GithubIcon from "@icons/GithubIcon.astro";
 import LinkedinIcon from "@icons/LinkedinIcon.astro";
 import PhoneIcon from "@icons/PhoneIcon.astro";
@@ -9,97 +10,114 @@ import PhoneIcon from "@icons/PhoneIcon.astro";
   title="Julian Mican | Backend & Full Stack Expert"
   description="Seasoned Backend Developer with 8 years of experience. Specializing in robust, scalable solutions with Java, Python, and JavaScript."
 >
-  <div
-    class="relative flex flex-col items-center justify-center pt-32 pb-20 px-4"
-  >
-    <div class="max-w-4xl mx-auto">
-      <!-- Title Section -->
-      <div
-        class="text-center mb-12 animate-in fade-in slide-in-from-bottom-8 duration-700"
-      >
-        <p class="eyebrow mb-5">Backend &amp; Full Stack Developer</p>
-        <h1
-          class="text-5xl sm:text-6xl md:text-8xl font-black mb-6 leading-[1.2] sm:leading-[1.2] md:leading-[1.2] playfair-display bg-clip-text text-transparent bg-gradient-to-r from-slate-100 to-slate-400"
-        >
-          Julian Mican
-        </h1>
+  <div class="relative flex-grow flex items-center pt-32 pb-20 px-4 sm:px-8">
+    <div class="max-w-6xl w-full mx-auto">
+      <div class="grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-6 items-center">
+        <!-- Title Section -->
         <div
-          class="h-px w-24 accent-gradient mx-auto rounded-full"
-          style="box-shadow: 0 0 15px var(--accent-soft);"
+          class="text-center lg:text-left animate-in fade-in slide-in-from-bottom-8"
         >
+          <p class="eyebrow mb-5">Backend &amp; Full Stack Developer</p>
+          <h1
+            class="text-6xl sm:text-7xl xl:text-8xl font-black mb-6 leading-[1.2] playfair-display bg-clip-text text-transparent bg-gradient-to-r from-slate-100 to-slate-400"
+          >
+            Julian Mican
+          </h1>
+          <div
+            class="h-px w-24 accent-gradient mx-auto lg:mx-0 rounded-full"
+            style="box-shadow: 0 0 15px var(--accent-soft);"
+          >
+          </div>
+
+          <p
+            id="typingEffect"
+            class="min-h-[120px] mt-8 max-w-xl mx-auto lg:mx-0 text-lg md:text-xl text-slate-300 leading-relaxed"
+          >
+            <!-- Typing effect will populate this -->
+          </p>
+
+          <div class="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 mt-8">
+            <a
+              href="/experience"
+              class="px-5 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base rounded-2xl accent-gradient-deep text-white font-bold shadow-[0_0_20px_var(--accent-soft)] hover:shadow-[0_0_30px_var(--accent-soft)] hover:-translate-y-1 active:translate-y-0 transition-all"
+            >
+              See my experience
+            </a>
+            <a
+              href="/contact"
+              class="px-5 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base rounded-2xl border border-white/10 text-slate-200 font-bold hover:text-white hover:bg-white/5 hover:border-[color:var(--accent-soft)] transition-all"
+            >
+              Get in touch
+            </a>
+          </div>
+
+          <!-- Social Icons -->
+          <div class="flex justify-center lg:justify-start gap-4 mt-8">
+            <a
+              href="https://www.linkedin.com/in/julian-ariel-mican-franco-87a08574/?locale=en_US"
+              target="_blank"
+              class="p-3 group glass-card rounded-2xl hover:scale-110 transition-all duration-300 hover:shadow-[0_0_20px_var(--accent-soft)] hover:border-[color:var(--accent-soft)]"
+              title="LinkedIn"
+            >
+              <LinkedinIcon
+                width="24"
+                height="24"
+                class="group-hover:text-white"
+              />
+            </a>
+            <a
+              href="https://github.com/julianjjo"
+              target="_blank"
+              class="p-3 group glass-card rounded-2xl hover:scale-110 transition-all duration-300 hover:shadow-[0_0_20px_var(--accent-soft)] hover:border-[color:var(--accent-soft)]"
+              title="GitHub"
+            >
+              <GithubIcon width="24" height="24" class="group-hover:text-white" />
+            </a>
+            <a
+              href="tel:+573225107534"
+              class="p-3 group glass-card rounded-2xl hover:scale-110 transition-all duration-300 hover:shadow-[0_0_20px_var(--accent-soft)] hover:border-[color:var(--accent-soft)]"
+              title="Call Me"
+            >
+              <PhoneIcon width="24" height="24" class="group-hover:text-white" />
+            </a>
+          </div>
+        </div>
+
+        <!-- 3D stack globe -->
+        <div class="globe-entrance">
+          <TechGlobe />
         </div>
       </div>
 
-      <!-- Content Section -->
+      <!-- Expertise -->
       <div
-        class="glass-card rounded-3xl p-8 md:p-12 space-y-8 animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-200"
+        data-tilt
+        data-reveal
+        class="glass-card relative rounded-3xl p-8 md:p-12 mt-16 grid grid-cols-1 md:grid-cols-2 gap-8"
       >
-        <div
-          class="text-lg md:text-xl text-slate-300 leading-relaxed text-center"
-        >
-          <p id="typingEffect" class="min-h-[120px]">
-            <!-- Typing effect will populate this -->
+        <div class="space-y-4">
+          <h3 class="eyebrow">
+            Core Expertise
+          </h3>
+          <p class="text-slate-400 leading-relaxed">
+            8 years of building high-performance systems. I bridge the gap
+            between complex backend logic and seamless frontend experiences
+            using <span class="text-white font-medium">Java</span>, <span
+              class="text-white font-medium">Python</span
+            >, and <span class="text-white font-medium">Node.js</span>.
           </p>
         </div>
-
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-white/5"
-        >
-          <div class="space-y-4">
-            <h3 class="eyebrow">
-              Core Expertise
-            </h3>
-            <p class="text-slate-400 leading-relaxed">
-              8 years of building high-performance systems. I bridge the gap
-              between complex backend logic and seamless frontend experiences
-              using <span class="text-white font-medium">Java</span>, <span
-                class="text-white font-medium">Python</span
-              >, and <span class="text-white font-medium">Node.js</span>.
-            </p>
-          </div>
-          <div class="space-y-4">
-            <h3 class="eyebrow eyebrow-alt">
-              Cloud & Architecture
-            </h3>
-            <p class="text-slate-400 leading-relaxed">
-              Architecting the future on <span class="text-white font-medium"
-                >AWS</span
-              > and <span class="text-white font-medium">GCP</span>. Expert in
-              microservices, clean architecture, and delivering technical
-              excellence at scale.
-            </p>
-          </div>
-        </div>
-
-        <!-- Social Icons -->
-        <div class="flex justify-center gap-6 pt-12 border-t border-white/5">
-          <a
-            href="https://www.linkedin.com/in/julian-ariel-mican-franco-87a08574/?locale=en_US"
-            target="_blank"
-            class="p-4 group glass-card rounded-2xl hover:scale-110 transition-all duration-300 hover:shadow-[0_0_20px_var(--accent-soft)] hover:border-[color:var(--accent-soft)]"
-            title="LinkedIn"
-          >
-            <LinkedinIcon
-              width="32"
-              height="32"
-              class="group-hover:text-white"
-            />
-          </a>
-          <a
-            href="https://github.com/julianjjo"
-            target="_blank"
-            class="p-4 group glass-card rounded-2xl hover:scale-110 transition-all duration-300 hover:shadow-[0_0_20px_var(--accent-soft)] hover:border-[color:var(--accent-soft)]"
-            title="GitHub"
-          >
-            <GithubIcon width="32" height="32" class="group-hover:text-white" />
-          </a>
-          <a
-            href="tel:+573225107534"
-            class="p-4 group glass-card rounded-2xl hover:scale-110 transition-all duration-300 hover:shadow-[0_0_20px_var(--accent-soft)] hover:border-[color:var(--accent-soft)]"
-            title="Call Me"
-          >
-            <PhoneIcon width="32" height="32" class="group-hover:text-white" />
-          </a>
+        <div class="space-y-4">
+          <h3 class="eyebrow eyebrow-alt">
+            Cloud & Architecture
+          </h3>
+          <p class="text-slate-400 leading-relaxed">
+            Architecting the future on <span class="text-white font-medium"
+              >AWS</span
+            > and <span class="text-white font-medium">GCP</span>. Expert in
+            microservices, clean architecture, and delivering technical
+            excellence at scale.
+          </p>
         </div>
       </div>
     </div>
@@ -116,8 +134,8 @@ import PhoneIcon from "@icons/PhoneIcon.astro";
   .slide-in-from-bottom-8 {
     animation: slideInBottom8 0.8s ease-out;
   }
-  .slide-in-from-bottom-12 {
-    animation: slideInBottom12 1s ease-out;
+  .globe-entrance {
+    animation: globeIn 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
   }
 
   @keyframes fadeIn {
@@ -128,20 +146,18 @@ import PhoneIcon from "@icons/PhoneIcon.astro";
       opacity: 1;
     }
   }
+  /* `translate`/`scale` rather than `transform`, so a filled entrance never
+     pins a transform that pointer effects need to drive. */
   @keyframes slideInBottom8 {
     from {
-      transform: translateY(32px);
-    }
-    to {
-      transform: translateY(0);
+      opacity: 0;
+      translate: 0 32px;
     }
   }
-  @keyframes slideInBottom12 {
+  @keyframes globeIn {
     from {
-      transform: translateY(48px);
-    }
-    to {
-      transform: translateY(0);
+      opacity: 0;
+      scale: 0.6;
     }
   }
 

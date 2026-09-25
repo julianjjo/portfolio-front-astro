@@ -1,0 +1,276 @@
+---
+import Icons from "@icons/Icons.astro";
+import { fibonacciSphere, placement, rotate } from "../lib/sphere";
+
+const technologies = [
+  { icon: "JavaIcon", label: "Java" },
+  { icon: "SpringBootIcon", label: "Spring Boot" },
+  { icon: "PythonIcon", label: "Python" },
+  { icon: "AwsIcon", label: "AWS" },
+  { icon: "NodeJsIcon", label: "Node.js" },
+  { icon: "NestJsIcon", label: "NestJS" },
+  { icon: "MySqlIcon", label: "MySQL" },
+  { icon: "PhpIcon", label: "PHP" },
+  { icon: "PostgreSqlIcon", label: "PostgreSQL" },
+  { icon: "GoogleCloudIcon", label: "Google Cloud" },
+  { icon: "TsIcon", label: "TypeScript" },
+  { icon: "SymfonyIcon", label: "Symfony" },
+  { icon: "OracleDbIcon", label: "Oracle DB" },
+  { icon: "AngularIcon", label: "Angular" },
+  { icon: "JsIcon", label: "JavaScript" },
+  { icon: "HtmlIcon", label: "HTML" },
+  { icon: "CssIcon", label: "CSS" },
+];
+
+// Resting tilt (radians), also read by the script, so the server-rendered
+// first paint is already the globe the animation starts from.
+const REST_TILT = -0.35;
+const points = fibonacciSphere(technologies.length);
+---
+
+<div class="globe-wrap">
+  <div
+    class="globe"
+    data-globe
+    data-rest={REST_TILT}
+    role="img"
+    aria-label={`3D globe of the technologies I work with: ${technologies.map((t) => t.label).join(", ")}`}
+  >
+    <div class="globe-glow"></div>
+    <div class="globe-scene">
+      <div class="globe-rings" style={`transform: rotateX(${REST_TILT}rad)`}>
+        <span class="globe-ring is-equator" style="--ring: rotateX(90deg)"></span>
+        <span
+          class="globe-ring"
+          style="--ring: translateY(calc(var(--r) * -0.5)) rotateX(90deg) scale(0.866)"
+        ></span>
+        <span
+          class="globe-ring"
+          style="--ring: translateY(calc(var(--r) * 0.5)) rotateX(90deg) scale(0.866)"
+        ></span>
+        <span class="globe-ring" style="--ring: rotateY(0deg)"></span>
+        <span class="globe-ring" style="--ring: rotateY(60deg)"></span>
+        <span class="globe-ring" style="--ring: rotateY(120deg)"></span>
+      </div>
+      {
+        technologies.map((tech, i) => (
+          <span
+            class="globe-item"
+            data-label={tech.label}
+            style={placement(rotate(points[i], REST_TILT, 0))}
+          >
+            <Icons width="28" height="28" name={tech.icon} />
+          </span>
+        ))
+      }
+    </div>
+  </div>
+  <p class="globe-hint plex-mono">Drag to spin</p>
+</div>
+
+<style>
+  .globe-wrap {
+    container-type: inline-size;
+    width: 100%;
+    max-width: 460px;
+    margin-inline: auto;
+  }
+
+  .globe {
+    --r: 36cqi;
+    position: relative;
+    aspect-ratio: 1;
+    perspective: 1100px;
+    cursor: grab;
+    /* Vertical swipes keep scrolling the page on touch screens. */
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .globe.is-dragging {
+    cursor: grabbing;
+  }
+
+  .globe-glow {
+    position: absolute;
+    inset: 22%;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-soft), transparent 70%);
+    filter: blur(40px);
+  }
+
+  .globe-scene,
+  .globe-rings {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+  }
+
+  .globe-ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: calc(var(--r) * 2);
+    height: calc(var(--r) * 2);
+    margin: calc(var(--r) * -1) 0 0 calc(var(--r) * -1);
+    border: 1px solid hsl(var(--accent-h) 84% 66% / 0.2);
+    border-radius: 50%;
+    transform: var(--ring);
+  }
+
+  .globe-ring.is-equator {
+    border-color: var(--accent-soft);
+  }
+
+  .globe-item {
+    --size: clamp(38px, 11.5cqi, 52px);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: var(--size);
+    height: var(--size);
+    margin: calc(var(--size) / -2) 0 0 calc(var(--size) / -2);
+    display: grid;
+    place-items: center;
+    border-radius: 30%;
+    background: rgba(241, 245, 249, 0.94);
+    box-shadow:
+      0 0 20px var(--accent-faint),
+      0 6px 16px rgba(0, 0, 0, 0.45);
+    will-change: transform, opacity;
+  }
+
+  .globe-item :global(svg) {
+    width: 58%;
+    height: 58%;
+  }
+
+  .globe-item::after {
+    content: attr(data-label);
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 50%;
+    translate: -50% 0;
+    white-space: nowrap;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font:
+      500 0.7rem/1.4 "IBM Plex Mono",
+      ui-monospace,
+      monospace;
+    color: #f1f5f9;
+    background: rgba(2, 6, 23, 0.85);
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+
+  .globe-item:hover::after {
+    opacity: 1;
+  }
+
+  .globe-hint {
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+</style>
+
+<script>
+  import { fibonacciSphere, placement, rotate } from "../lib/sphere";
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  const SPIN = reducedMotion ? 0 : 0.004; // idle spin, radians per 60 Hz frame
+  const DRAG = 0.006; // radians per dragged pixel
+  const clampTilt = (v: number) => Math.max(-1.2, Math.min(1.2, v));
+
+  document.querySelectorAll<HTMLElement>("[data-globe]").forEach((globe) => {
+    const rings = globe.querySelector<HTMLElement>(".globe-rings")!;
+    const items = [...globe.querySelectorAll<HTMLElement>(".globe-item")];
+    const points = fibonacciSphere(items.length);
+
+    let a = Number(globe.dataset.rest); // tilt (rotateX)
+    let b = 0; // spin (rotateY)
+    let va = 0;
+    let vb = SPIN;
+    let dragging = false;
+    let hovering = false;
+    let visible = false;
+    let lastX = 0;
+    let lastY = 0;
+    let lastMove = 0;
+    let lastFrame = 0;
+    let frame = 0;
+
+    function render() {
+      rings.style.transform = `rotateX(${a}rad) rotateY(${b}rad)`;
+      items.forEach((item, i) =>
+        Object.assign(item.style, placement(rotate(points[i], a, b))),
+      );
+    }
+
+    function tick(now: number) {
+      const dt = Math.min(now - lastFrame, 50) / 16.7;
+      lastFrame = now;
+      if (!dragging) {
+        // Ease back to the idle spin (slower while hovered) after a fling.
+        const target = hovering ? SPIN * 0.3 : SPIN;
+        vb += (target - vb) * (1 - 0.95 ** dt);
+        va *= 0.93 ** dt;
+        a = clampTilt(a + va * dt);
+        b += vb * dt;
+      }
+      render();
+      const settled =
+        !dragging && SPIN === 0 && Math.abs(va) + Math.abs(vb) < 1e-4;
+      frame = visible && !settled ? requestAnimationFrame(tick) : 0;
+    }
+
+    function start() {
+      if (frame) return;
+      lastFrame = performance.now();
+      frame = requestAnimationFrame(tick);
+    }
+
+    globe.addEventListener("pointerdown", (e) => {
+      dragging = true;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      globe.setPointerCapture(e.pointerId);
+      globe.classList.add("is-dragging");
+      start();
+    });
+
+    globe.addEventListener("pointermove", (e) => {
+      if (!dragging) return;
+      vb = (e.clientX - lastX) * DRAG;
+      va = -(e.clientY - lastY) * DRAG;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      lastMove = performance.now();
+      a = clampTilt(a + va);
+      b += vb;
+    });
+
+    const release = () => {
+      dragging = false;
+      globe.classList.remove("is-dragging");
+      // Held still before letting go: drop it instead of flinging.
+      if (performance.now() - lastMove > 100) va = vb = 0;
+    };
+    globe.addEventListener("pointerup", release);
+    globe.addEventListener("pointercancel", release);
+    globe.addEventListener("pointerenter", () => (hovering = true));
+    globe.addEventListener("pointerleave", () => (hovering = false));
+
+    // Only animate while on screen.
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (visible) start();
+    }).observe(globe);
+  });
+</script>

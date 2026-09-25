@@ -90,10 +90,11 @@ const experiences = [
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 md:px-20 py-10">
   {
-    experiences.map((experience, index) => (
+    experiences.map((experience) => (
       <div
-        class="glass-card group flex flex-col rounded-3xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_40px_var(--accent-faint)] border-white/5 hover:border-[color:var(--accent-soft)] animate-slide-up"
-        style={`animation-delay: ${index * 150}ms`}
+        data-tilt
+        data-reveal
+        class="glass-card group relative flex flex-col rounded-3xl overflow-hidden hover:shadow-[0_0_40px_var(--accent-faint)] border-white/5 hover:border-[color:var(--accent-soft)]"
       >
         <!-- Card Header -->
         <div class="p-8 pb-4 relative overflow-hidden">
@@ -129,19 +130,3 @@ const experiences = [
   }
 </div>
 
-<style>
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-slide-up {
-    animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  }
-</style>
