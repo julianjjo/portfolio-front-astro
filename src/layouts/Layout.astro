@@ -23,7 +23,7 @@ const { title, description } = Astro.props;
     <FontsLinks />
     <Canvas />
     <main
-      class="relative flex flex-col min-h-screen transition-all duration-500 overflow-x-hidden"
+      class="relative flex flex-col min-h-screen transition-all duration-500 overflow-x-clip"
       role="main"
     >
       <Navbar />
@@ -196,11 +196,13 @@ const { title, description } = Astro.props;
   /* Scroll reveal, driven by the scroll position itself (no JS). Browsers
      without scroll-driven animations show the content as-is. Longhands on
      purpose: the minifier folds a shorthand + animation-timeline into one
-     `animation` that Chromium rejects. */
+     `animation` that Chromium rejects. view() tracks the nearest scroll
+     container, so ancestors clip with overflow: clip, never hidden. */
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
       [data-reveal] {
         animation-name: reveal;
+        animation-duration: auto;
         animation-timing-function: linear;
         animation-fill-mode: both;
         animation-timeline: view();

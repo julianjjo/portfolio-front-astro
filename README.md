@@ -59,7 +59,7 @@ All native, no 3D or animation libraries:
 
 - **Stack globe** (`src/components/TechGlobe.astro`): the hero's technologies on a CSS 3D sphere that spins on its own and can be dragged. Positions are server-rendered, so the first paint is already the globe; the script only animates while it is on screen.
 - **Tilt cards**: any element with `data-tilt` leans toward the pointer with a glare that follows it (mouse/trackpad only, off with reduced motion).
-- **Scroll reveal**: `data-reveal` elements, and the skill bars, animate with the scroll position via CSS scroll-driven animations; browsers without them show the content as-is.
+- **Scroll reveal**: `data-reveal` elements animate with the scroll position via CSS scroll-driven animations; browsers without them show the content as-is. `view()` follows the nearest scroll container, so wrappers clip with `overflow: clip`, not `hidden`.
 - **Page transitions**: cross-document view transitions (`@view-transition`), with the navbar held in place.
 
 Typefaces: **Playfair Display** for display, **Outfit** for body, **IBM Plex Mono** for labels and data.

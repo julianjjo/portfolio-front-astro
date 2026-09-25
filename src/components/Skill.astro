@@ -51,21 +51,6 @@ const displayName = label ?? nameIcon.replace("Icon", "");
     animation: fillBar 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;
   }
 
-  /* Where supported, the bar fills as it scrolls into view instead. Only the
-     longhands that differ, so the minifier can't fold animation-timeline
-     into an `animation` shorthand that Chromium rejects. */
-  @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
-      .skill-bar {
-        animation-duration: auto;
-        animation-delay: 0s;
-        animation-timing-function: linear;
-        animation-timeline: view();
-        animation-range: entry 20% cover 45%;
-      }
-    }
-  }
-
   @keyframes fillBar {
     from {
       width: 0;

@@ -72,6 +72,21 @@ describe("Layout.astro living accent tokens", () => {
   });
 });
 
+describe("Layout.astro scroll reveal", () => {
+  it("clips <main> without making it a scroll container, so view() tracks the page", () => {
+    // overflow-x: hidden turns <main> into a scroll container that never
+    // scrolls, freezing every [data-reveal] animation at its end state.
+    expect(source).toMatch(/<main\s+class="[^"]*\boverflow-x-clip\b/);
+    expect(source).not.toMatch(/<main\s+class="[^"]*\boverflow-x-hidden\b/);
+  });
+
+  it("drives [data-reveal] with longhands and an automatic duration", () => {
+    expect(source).toMatch(
+      /\[data-reveal\] \{\s*animation-name: reveal;\s*animation-duration: auto;[\s\S]*?animation-timeline: view\(\);/,
+    );
+  });
+});
+
 describe("Layout.astro composition", () => {
   it("still wires up SEO, fonts, canvas and navbar", () => {
     expect(source).toContain("<SEO title={title} description={description} />");
