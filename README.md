@@ -39,8 +39,9 @@ The dev server runs at `localhost:4321`.
 ├── run-server.mjs          # production entry: express + SSR handler + /api proxy
 └── src/
     ├── assets/
-    ├── components/         # Canvas, Navbar, ExperienceCards, FormContact, Toast, ...
+    ├── components/         # Canvas, TechGlobe, Navbar, ExperienceCards, FormContact, Toast, ...
     ├── icons/
+    ├── lib/                # sphere.ts: math for the 3D globe
     ├── layouts/
     │   └── Layout.astro    # global styles and design tokens
     └── pages/              # / (about), /experience, /skills, /contact
@@ -51,6 +52,15 @@ The dev server runs at `localhost:4321`.
 The background canvas (`src/components/Canvas.astro`) rotates its hue through the full spectrum on a ~60 second cycle and writes the current value to `--accent-h` on `<html>`. Every accent in the UI — eyebrows, hairlines, skill bars, button glow, focus rings, text selection — derives from that variable through the tokens in `src/layouts/Layout.astro` (`--accent`, `--accent-2`, `--accent-soft`, ...), so the whole page drifts in sync with the canvas behind it.
 
 The cycle starts at brand violet (270°). With `prefers-reduced-motion` the canvas renders a still frame instead of animating and the accent stays violet.
+
+## Interaction layer
+
+All native, no 3D or animation libraries:
+
+- **Stack globe** (`src/components/TechGlobe.astro`): the hero's technologies on a CSS 3D sphere that spins on its own and can be dragged. Positions are server-rendered, so the first paint is already the globe; the script only animates while it is on screen.
+- **Tilt cards**: any element with `data-tilt` leans toward the pointer with a glare that follows it (mouse/trackpad only, off with reduced motion).
+- **Scroll reveal**: `data-reveal` elements animate with the scroll position via CSS scroll-driven animations; browsers without them show the content as-is. `view()` follows the nearest scroll container, so wrappers clip with `overflow: clip`, not `hidden`.
+- **Page transitions**: cross-document view transitions (`@view-transition`), with the navbar held in place.
 
 Typefaces: **Playfair Display** for display, **Outfit** for body, **IBM Plex Mono** for labels and data.
 

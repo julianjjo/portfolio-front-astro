@@ -23,7 +23,7 @@ const { title, description } = Astro.props;
     <FontsLinks />
     <Canvas />
     <main
-      class="relative flex flex-col min-h-screen transition-all duration-500 overflow-x-hidden"
+      class="relative flex flex-col min-h-screen transition-all duration-500 overflow-x-clip"
       role="main"
     >
       <Navbar />
@@ -33,6 +33,31 @@ const { title, description } = Astro.props;
     </main>
   </body>
 </html>
+
+<script>
+  // Pointer-driven 3D tilt for [data-tilt] cards; mouse/trackpad only.
+  const MAX_TILT = 8; // degrees
+  if (
+    window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    document.querySelectorAll<HTMLElement>("[data-tilt]").forEach((card) => {
+      card.addEventListener("pointermove", (e) => {
+        const box = card.getBoundingClientRect();
+        const x = (e.clientX - box.left) / box.width;
+        const y = (e.clientY - box.top) / box.height;
+        card.style.setProperty("--ry", `${(x - 0.5) * 2 * MAX_TILT}deg`);
+        card.style.setProperty("--rx", `${(0.5 - y) * 2 * MAX_TILT}deg`);
+        card.style.setProperty("--gx", `${x * 100}%`);
+        card.style.setProperty("--gy", `${y * 100}%`);
+      });
+      card.addEventListener("pointerleave", () => {
+        card.style.setProperty("--rx", "0deg");
+        card.style.setProperty("--ry", "0deg");
+      });
+    });
+  }
+</script>
 <style is:global>
   :root {
     /* Living accent: --accent-h is written by the canvas animation every few
@@ -130,6 +155,67 @@ const { title, description } = Astro.props;
     z-index: 1000;
     pointer-events: none;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  /* Cross-fade between pages (browsers without it just navigate). */
+  @view-transition {
+    navigation: auto;
+  }
+
+  /* 3D tilt: the script below writes --rx/--ry from the pointer and --gx/--gy
+     for a glare that follows it. Needs a positioned element. */
+  [data-tilt] {
+    --rx: 0deg;
+    --ry: 0deg;
+    transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry));
+    transition:
+      transform 0.3s ease-out,
+      box-shadow 0.5s,
+      border-color 0.5s;
+  }
+
+  [data-tilt]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(
+      circle at var(--gx, 50%) var(--gy, 50%),
+      hsl(var(--accent-h) 84% 66% / 0.16),
+      transparent 55%
+    );
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  [data-tilt]:hover::after {
+    opacity: 1;
+  }
+
+  /* Scroll reveal, driven by the scroll position itself (no JS). Browsers
+     without scroll-driven animations show the content as-is. Longhands on
+     purpose: the minifier folds a shorthand + animation-timeline into one
+     `animation` that Chromium rejects. view() tracks the nearest scroll
+     container, so ancestors clip with overflow: clip, never hidden. */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      [data-reveal] {
+        animation-name: reveal;
+        animation-duration: auto;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 70%;
+      }
+    }
+  }
+
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      translate: 0 48px;
+    }
   }
 
   ::selection {
