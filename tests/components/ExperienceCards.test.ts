@@ -13,6 +13,7 @@ describe("ExperienceCards.astro", () => {
     const result = await container.renderToString(ExperienceCards);
 
     for (const title of [
+      "AI Research",
       "Global66",
       "Farmatodo",
       "Sophos Solutions",
@@ -47,6 +48,6 @@ describe("ExperienceCards.astro", () => {
     const result = await container.renderToString(ExperienceCards);
 
     const matches = result.match(/h-0\.5 w-12 accent-gradient/g) ?? [];
-    expect(matches.length).toBe(6);
+    expect(matches.length).toBe(7);
   });
 });
